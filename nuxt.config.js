@@ -15,6 +15,7 @@ module.exports = {
   },
   css: [
     'milligram/dist/milligram.min.css',
+    'animate.css/animate.css',
   ],
   /*
   ** Customize the progress bar color

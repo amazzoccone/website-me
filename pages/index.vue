@@ -6,7 +6,7 @@
           <coming-soon/>
         </div>
         <div class="row">
-          <div class="links">
+          <div class="links animated fadeIn">
               <p class="follow-text">follow me:</p>
               <p class="follow-link">
                 <a
@@ -38,6 +38,9 @@ export default {
 
   .links {
     padding-top: 100px;
+
+    -webkit-animation-duration: 1s;
+    -webkit-animation-delay: 3s;
   }
 
   .links > p {
