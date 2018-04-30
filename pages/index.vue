@@ -1,64 +1,64 @@
 <template>
   <section class="container">
-    <div>
-      <app-logo/>
-      <h1 class="title">
-        website-me
-      </h1>
-      <h2 class="subtitle">
-        Personal website
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green">Documentation</a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey">GitHub</a>
+    <div class="row">
+      <div class="title column column-50 column-offset-25">
+        <div class="row">
+          <coming-soon/>
+        </div>
+        <div class="row">
+          <div class="links">
+              <p class="follow-text">follow me:</p>
+              <p class="follow-link">
+                <a
+                  href="https://www.instagram.com/andres.mazzo"
+                  target="_blank"
+                  class="follow-anchor">instagram.com/andres.mazzo</a>
+              </p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 </template>
 
 <script>
-import AppLogo from '~/components/AppLogo.vue'
+import ComingSoon from '~/components/ComingSoon.vue'
 
 export default {
   components: {
-    AppLogo
+    ComingSoon
   }
 }
 </script>
 
-<style>
-.container {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
+<style scoped>
+  .title {
+    margin-top: 15%;
+  }
 
-.title {
-  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* 1 */
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
+  .links {
+    padding-top: 100px;
+  }
 
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
+  .links > p {
+    margin-top: -10px;
+    margin-bottom: 0px;
+    font-size: 0.9em;
+  }
 
-.links {
-  padding-top: 15px;
-}
+  .follow-text {
+    text-align: left;
+    font-weight: bold;
+    color: #BBB;
+  }
+  .follow-link {
+    text-align: left;
+  }
+  .follow-anchor {
+    color: #AAA;
+  }
+  .follow-anchor:hover {
+    color: #777;
+  }
+
 </style>
