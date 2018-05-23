@@ -43,5 +43,25 @@ module.exports = {
         })
       }
     }
-  }
+  },
+  modules: [
+      ['nuxt-i18n', {
+        locales: [
+          {
+            code: 'en',
+            iso: 'en-US',
+            name: 'English',
+            langFile: 'en-US/index.js'
+          },
+          {
+            code: 'es',
+            iso: 'es-ES',
+            name: 'Español',
+            langFile: 'es-ES/index.js'
+          }
+        ],
+        loadLanguagesAsync: true,
+        langDir: 'lang/'
+      }]
+  ],
 }
