@@ -1,5 +1,7 @@
 import home from './home';
+import links from './links';
 
-module.exports = Object.assign(
-    home,
-);
+export default Object.assign(
+  links,
+  home
+)
