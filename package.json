@@ -4,6 +4,12 @@
   "description": "Personal website",
   "author": "Andres Mazzo <amazzoccone@bondacom.com>",
   "private": true,
+  "config": {
+   "nuxt": {
+     "host": "localhost",
+     "port": "3000"
+   }
+  },
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",

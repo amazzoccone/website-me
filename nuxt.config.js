@@ -1,4 +1,8 @@
 module.exports = {
+  env: {
+    coming_soon: process.env.COMING_SOON || true
+  },
+
   /*
   ** Headers of the page
   */
@@ -51,16 +55,18 @@ module.exports = {
             code: 'en',
             iso: 'en-US',
             name: 'English',
-            langFile: 'en-US/index.js'
+            file: 'en-US/index.js'
           },
           {
             code: 'es',
             iso: 'es-ES',
             name: 'Español',
-            langFile: 'es-ES/index.js'
+            file: 'es-ES/index.js'
           }
         ],
+        defaultLocale: 'en',
         loadLanguagesAsync: true,
+        lazy: true,
         langDir: 'lang/'
       }]
   ],
