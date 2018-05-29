@@ -31,6 +31,10 @@ module.exports = {
   */
   loading: { color: '#3B8070' },
   /*
+  ** Instance own libraries or external modules
+  */
+  plugins: ['~/plugins/helpers']
+  /*
   ** Build configuration
   */
   build: {
