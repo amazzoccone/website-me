@@ -1,15 +1,15 @@
 <template>
   <div class="fullpage row">
-    <background-page color="#EEE" :images="config.images"></background-page>
-    <sidebar rotate="-90" :text="config.sidebarLeft.text"></sidebar>
+    <background-page color="#EEE" :images="background.images"></background-page>
+    <sidebar rotate="-90" :text="sidebarLeft.text"></sidebar>
     <div class="column column-80 content">
-      <header-content :params="config.header"></header-content>
+      <header-content :params="header"></header-content>
 
       <nuxt/>
 
-      <footer-content :params="config.footer"></footer-content>
+      <footer-content :params="footer"></footer-content>
     </div>
-    <sidebar rotate="90" :text="config.sidebarRight.text"></sidebar>
+    <sidebar rotate="90" :text="sidebarRight.text"></sidebar>
   </div>
 </template>
 
@@ -24,6 +24,21 @@
       config () {
         return this.$store.state.layout;
       },
+      background() {
+        return this.config;
+      },
+      footer() {
+        return _.get(this.config, 'footer', {});
+      },
+      header() {
+        return _.get(this.config, 'header', {});
+      },
+      sidebarLeft() {
+        return _.get(this.config, 'sidebarLeft', {});
+      },
+      sidebarRight() {
+        return _.get(this.config, 'sidebarRight', {});
+      }
     },
     components: {
       BackgroundPage,
