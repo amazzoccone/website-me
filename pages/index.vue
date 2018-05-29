@@ -1,24 +1,35 @@
 <template>
   <div>
-    <coming-soon v-if="showComingSoon"></coming-soon>
-    <home v-else></home>
+    <!--TODO: Add title and work number reference-->
   </div>
 </template>
 
 <script>
-import ComingSoon from '~/components/ComingSoon/Content.vue'
-import Home from '~/components/Home.vue'
 
 export default {
-  computed: {
-    showComingSoon() {
-        return process.env.coming_soon;
-    }
-  },
-
-  components: {
-    ComingSoon,
-    Home
+  fetch ({ store, app }) {
+    store.commit('layout', {
+      images: ['/IIKY4090.JPG', 'IMG_0529.JPG'],
+      sidebarLeft: {
+        text: app.i18n.t('links.about')
+      },
+      sidebarRight: {
+        text: app.i18n.t('links.works')
+      },
+      header: {
+        author: true,
+        label: true,
+        languageSelector: true,
+        logo: true,
+      },
+      footer: {
+        label: {
+          show: true,
+          text: 'scroll'
+        },
+        social: true
+      }
+    })
   }
 }
 </script>

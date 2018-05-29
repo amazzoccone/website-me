@@ -31,3 +31,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .vertical-line {
+    border-left: 2px solid #333;
+  }
+</style>

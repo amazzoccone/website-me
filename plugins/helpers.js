@@ -17,4 +17,5 @@ const lodashMin = {
 }
 
 
-window._. = lodashMin;
+window.test = 'aaa';
+// window['_.'] = lodashMin;
