@@ -2,16 +2,16 @@
   <div class="fullpage row">
     <background-page color="#EEE" :images="images"></background-page>
     <sidebar rotate="-90" :text="$t('links.about')"></sidebar>
-    <!-- <content>
-      <header-ct></header-ct>
-    </content> -->
+    <content-page>
+      <!--TODO: Add title and work number reference-->
+    </content-page>
     <sidebar rotate="90" :text="$t('links.works')"></sidebar>
   </div>
 </template>
 
 <script>
 import BackgroundPage from '~/components/Background.vue'
-// import Content from '~/components/Content.vue'
+import Content from '~/components/Content.vue'
 import Sidebar from '~/components/Sidebar.vue'
 
 export default {
@@ -24,13 +24,9 @@ export default {
       ]
     }
   },
-  mounted() {
-
-  },
-
   components: {
     BackgroundPage,
-    // Content,
+    'content-page': Content,
     Sidebar
   }
 }
