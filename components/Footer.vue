@@ -20,12 +20,12 @@ export default {
   },
   computed: {
     showLabel() {
-      _.get(this.params, 'label.info', false);
+      return _.get(this.params, 'label.show', false);
     },
     labelText() {
-      _.get(this.params, 'label.text');
+      return _.get(this.params, 'label.text');
     }
-  }
+  },
   components: {
     PageLabel,
     SocialLinks,

@@ -1,6 +1,8 @@
+const webpack = require('webpack')
+
 module.exports = {
   env: {
-    coming_soon: process.env.COMING_SOON || true
+    //
   },
 
   /*
@@ -31,10 +33,6 @@ module.exports = {
   */
   loading: { color: '#3B8070' },
   /*
-  ** Instance own libraries or external modules
-  */
-  plugins: ['~/plugins/helpers']
-  /*
   ** Build configuration
   */
   build: {
@@ -50,7 +48,13 @@ module.exports = {
           exclude: /(node_modules)/
         })
       }
-    }
+    },
+    // Automatically load plugin instead of having to import or require them everywhere.
+    plugins: [
+      new webpack.ProvidePlugin({
+        '_': 'lodash'
+      })
+    ],
   },
   modules: [
       ['nuxt-i18n', {

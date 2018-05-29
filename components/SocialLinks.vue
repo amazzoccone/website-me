@@ -32,7 +32,7 @@ export default {
     contactIsActive() {
       return this.active == 'contact';
     },
-    followtIsActive() {
+    followIsActive() {
       return this.active == 'follow';
     },
   },

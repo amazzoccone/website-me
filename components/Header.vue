@@ -17,13 +17,7 @@ export default {
     params: {
       type: Object,
       default: () => {
-        return {
-          author: true,
-          label: false,
-          languageSelector: true,
-          logo: true,
-          show: true,
-        }
+        return {};
       }
     },
   },

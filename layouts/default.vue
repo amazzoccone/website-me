@@ -1,34 +1,34 @@
 <template>
   <div class="fullpage row">
-    <background-page color="#EEE" :images="[]"></background-page>
-    <sidebar rotate="-90" text="params.sidebarLeft.text"></sidebar>
+    <background-page color="#EEE" :images="config.images"></background-page>
+    <sidebar rotate="-90" :text="config.sidebarLeft.text"></sidebar>
     <div class="column column-80 content">
-      <!-- <header-content :params="params.header"></header-content> -->
+      <header-content :params="config.header"></header-content>
 
       <nuxt/>
 
-      <!-- <footer-content :params="params.footer"></footer-content> -->
+      <footer-content :params="config.footer"></footer-content>
     </div>
-    <sidebar rotate="90" text="params.sidebarRight.text"></sidebar>
+    <sidebar rotate="90" :text="config.sidebarRight.text"></sidebar>
   </div>
 </template>
 
 <script>
   import BackgroundPage from '~/components/Background.vue'
-  // import FooterContent from '~/components/Footer.vue'
-  // import HeaderContent from '~/components/Header.vue'
+  import FooterContent from '~/components/Footer.vue'
+  import HeaderContent from '~/components/Header.vue'
   import Sidebar from '~/components/Sidebar.vue'
 
   export default {
     computed: {
-      params () {
+      config () {
         return this.$store.state.layout;
       },
     },
     components: {
       BackgroundPage,
-      // Footer,
-      // Header,
+      FooterContent,
+      HeaderContent,
       Sidebar
     }
   }

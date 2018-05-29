@@ -11,7 +11,7 @@ export default {
   props: {
     position: {
       type: String,
-      required,
+      required: true,
       validator: (value) => {
         return ['bottom', 'top'].indexOf(value) !== -1
       }
@@ -23,10 +23,10 @@ export default {
   },
   computed: {
     isBottom() {
-      return position == 'bottom';
+      return this.position == 'bottom';
     },
     isTop() {
-      return position == 'top';
+      return this.position == 'top';
     }
   }
 }
