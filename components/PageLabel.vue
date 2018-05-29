@@ -1,0 +1,33 @@
+<template>
+  <div>
+    <div v-if="isTop" class="vertical-line"></div>
+    <span>{{ text }}</span>
+    <div v-if="isBottom" class="vertical-line"></div>
+  </div>
+</template>
+
+<script>
+export default {
+  props: {
+    position: {
+      type: String,
+      required,
+      validator: (value) => {
+        return ['bottom', 'top'].indexOf(value) !== -1
+      }
+    },
+    text: {
+      type: String,
+      required: true
+    }
+  },
+  computed: {
+    isBottom() {
+      return position == 'bottom';
+    },
+    isTop() {
+      return position == 'top';
+    }
+  }
+}
+</script>
