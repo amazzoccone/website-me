@@ -1,11 +1,11 @@
 <template>
-  <div class="header clearfix">
-    <logo class="float-left"/>
-    <author class="float-left"/>
+  <div class="clearfix">
+    <logo :color="logoColor" class="float-left header-space"/>
+    <author class="author float-left header-space"/>
 
     <page-label v-if="showLabel" position="top" :text="labelText"/>
 
-    <language-selector class="float-right"/>
+    <language-selector class="float-right header-space"/>
   </div>
 </template>
 
@@ -30,6 +30,9 @@ export default {
     },
     labelText() {
       return _.get(this.params, 'label.text');
+    },
+    logoColor() {
+      return _.get(this.params, 'logo.color');
     }
   },
   components: {
@@ -45,8 +48,11 @@ export default {
   /* Mobile First Media Queries */
 
   /* Base style */
-  .header {
+  .header-space {
     margin-top: 2vh;
+  }
+  .author {
+      margin-left: 50px;
   }
 
   /* Larger than mobile screen */
@@ -54,7 +60,7 @@ export default {
 
   /* Larger than tablet screen */
   @media (min-width: 80.0rem) {
-    .header {
+    .header-space {
       margin-top: 8vh;
     }
   }

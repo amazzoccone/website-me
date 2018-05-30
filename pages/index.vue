@@ -19,7 +19,9 @@ export default {
       header: {
         author: true,
         languageSelector: true,
-        logo: true,
+        logo: {
+          color: 'white'
+        },
       },
       footer: {
         label: {

@@ -1,7 +1,9 @@
 <template>
-  <div class="footer">
-    <page-label v-if="showLabel" position="bottom" :text="labelText"></page-label>
-    <social-links v-if="params.social"></social-links>
+  <div class="text-center">
+    <div class="footer" :style="{width: width, left: left}">
+      <page-label v-if="showLabel" position="bottom" :text="labelText"/>
+      <social-links v-if="params.social" class="float-right"/>
+    </div>
   </div>
 </template>
 
@@ -11,6 +13,10 @@ import SocialLinks from '~/components/SocialLinks.vue'
 
 export default {
   props: {
+    width: {
+      type: String,
+      default: '100%'
+    },
     params: {
       type: Object,
       default: () => {
@@ -24,6 +30,9 @@ export default {
     },
     labelText() {
       return _.get(this.params, 'label.text');
+    },
+    left() {
+      return (100 - this.width.slice(0, -1));
     }
   },
   components: {
@@ -36,9 +45,7 @@ export default {
 <style scoped>
   .footer {
       position: fixed;
-      left: 0;
       bottom: 0;
-      width: 100%;
       text-align: center;
   }
 </style>

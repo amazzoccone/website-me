@@ -7,7 +7,7 @@
 
       <nuxt/>
 
-      <footer-content :params="footer"></footer-content>
+      <footer-content width="80%" :params="footer"></footer-content>
     </div>
     <sidebar rotate="90" :text="sidebarRight.text"></sidebar>
   </div>
@@ -63,6 +63,7 @@
 
   body {
     margin: 0px;
+    color: #FFF;
   }
 
   .fullpage {
