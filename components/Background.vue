@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="back">
     <div class="background" :style="{'background-color': color}"></div>
     <div v-for="(image, key) in images" :key="key"
       :class="['background image', activeImage === key ? '' : 'hidden']"
@@ -44,6 +44,10 @@ export default {
 <style scoped>
   .hidden {
     display: none;
+  }
+
+  .back {
+    z-index: -1;
   }
 
   .background {

@@ -9,7 +9,7 @@
 export default {
   fetch ({ store, app }) {
     store.commit('layout', {
-      images: ['/IIKY4090.JPG', 'IMG_0529.JPG'],
+      images: ['/IMG_0546.JPG', 'IMG_0529.JPG'],
       sidebarLeft: {
         text: app.i18n.t('links.about')
       },
@@ -18,13 +18,11 @@ export default {
       },
       header: {
         author: true,
-        label: true,
         languageSelector: true,
         logo: true,
       },
       footer: {
         label: {
-          show: true,
           text: 'scroll'
         },
         social: true

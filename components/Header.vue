@@ -1,9 +1,11 @@
 <template>
-  <div>
-    <logo></logo>
-    <author></author>
-    <page-label v-if="showLabel" position="top" :text="labelText"></page-label>
-    <language-selector></language-selector>
+  <div class="header clearfix">
+    <logo class="float-left"/>
+    <author class="float-left"/>
+
+    <page-label v-if="showLabel" position="top" :text="labelText"/>
+
+    <language-selector class="float-right"/>
   </div>
 </template>
 
@@ -24,7 +26,7 @@ export default {
   },
   computed: {
     showLabel() {
-      return _.get(this.params, 'label.show', false);
+      return _.has(this.params, 'label');
     },
     labelText() {
       return _.get(this.params, 'label.text');
@@ -38,3 +40,25 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  /* Mobile First Media Queries */
+
+  /* Base style */
+  .header {
+    margin-top: 2vh;
+  }
+
+  /* Larger than mobile screen */
+  @media (min-width: 40.0rem) { }
+
+  /* Larger than tablet screen */
+  @media (min-width: 80.0rem) {
+    .header {
+      margin-top: 8vh;
+    }
+  }
+
+  /* Larger than desktop screen */
+  @media (min-width: 120.0rem) {}
+</style>
