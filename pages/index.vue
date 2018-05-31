@@ -8,25 +8,28 @@
 
 export default {
   fetch ({ store, app }) {
+    let images = ['/IMG_0546.JPG', 'IMG_0529.JPG', 'IMG_0529.JPG'];
+    let pages = images.length;
+
     store.commit('layout', {
-      images: ['/IMG_0546.JPG', 'IMG_0529.JPG'],
+      color: '#FFF',
+      images: images,
       sidebarLeft: {
-        text: app.i18n.t('links.about')
+        text: app.i18n.t('links.about'),
+        pages: pages,
+        page: 1
       },
       sidebarRight: {
-        text: app.i18n.t('links.works')
+        text: app.i18n.t('links.works'),
+        pages: pages,
+        page: 1
       },
       header: {
         author: true,
         languageSelector: true,
-        logo: {
-          color: 'white'
-        },
+        logo: {},
       },
       footer: {
-        label: {
-          text: 'scroll'
-        },
         social: true
       }
     })

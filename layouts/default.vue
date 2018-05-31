@@ -1,15 +1,24 @@
 <template>
-  <div class="fullpage row">
-    <background-page color="#EEE" :images="background.images"></background-page>
-    <sidebar rotate="-90" :text="sidebarLeft.text"></sidebar>
-    <div class="column column-80 content">
-      <header-content :params="header"></header-content>
+  <div class="layout-fullpage row">
+    <background-page color="#EEE" :images="config.images" />
+
+    <div class="column layout-sidebar">
+      <sidebar position="left" :text="sidebarLeft.text" :color="config.color"
+        :pages="sidebarLeft.pages" :page="sidebarLeft.page" />
+    </div>
+
+    <div class="column layout-content">
+      <header-content :params="header" />
 
       <nuxt/>
 
-      <footer-content width="80%" :params="footer"></footer-content>
+      <footer-content width="84%" :params="footer" />
     </div>
-    <sidebar rotate="90" :text="sidebarRight.text"></sidebar>
+
+    <div class="column layout-sidebar">
+      <sidebar position="right" :text="sidebarRight.text" :color="config.color"
+        :pages="sidebarRight.pages" :page="sidebarRight.page" />
+    </div>
   </div>
 </template>
 
@@ -23,9 +32,6 @@
     computed: {
       config () {
         return this.$store.state.layout;
-      },
-      background() {
-        return this.config;
       },
       footer() {
         return _.get(this.config, 'footer', {});
@@ -66,7 +72,19 @@
     color: #FFF;
   }
 
-  .fullpage {
+  .layout-fullpage {
     height: 100vh;
+  }
+  .layout-content {
+    -webkit-box-flex: 0 !important;
+    -ms-flex: 0 0 84% !important;
+    flex: 0 0 84% !important;
+    max-width: 84% !important;
+  }
+  .layout-sidebar {
+    -webkit-box-flex: 0 !important;
+    -ms-flex: 0 0 8% !important;
+    flex: 0 0 8% !important;
+    max-width: 8% !important;
   }
 </style>

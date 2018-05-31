@@ -1,6 +1,6 @@
 <template>
   <div class="clearfix">
-    <logo :color="logoColor" class="float-left header-space"/>
+    <logo :color="color" class="float-left header-space"/>
     <author class="author float-left header-space"/>
 
     <page-label v-if="showLabel" position="top" :text="labelText"/>
@@ -31,8 +31,8 @@ export default {
     labelText() {
       return _.get(this.params, 'label.text');
     },
-    logoColor() {
-      return _.get(this.params, 'logo.color');
+    color() {
+      return _.get(this.params, 'color');
     }
   },
   components: {
