@@ -1,21 +1,27 @@
 <template>
-  <div class="layout-fullpage row">
-    <background-page color="#EEE" :images="background.images" />
+  <div class="container-fullpage">
+    <div class="row fullpage">
+      <background-page color="#EEE" :images="background.images" />
 
-    <div class="column layout-sidebar">
-      <sidebar :params="sidebarLeft" />
-    </div>
+      <div class="column layout-sidebar">
+        <sidebar :params="sidebarLeft" />
+      </div>
 
-    <div class="column layout-content">
-      <header-content :params="header" />
+      <div class="column layout-content">
+        <header-content :params="header" />
 
-      <nuxt/>
+        <div class="row">
+          <nuxt/>
+        </div>
 
-      <footer-content width="84%" :params="footer" />
-    </div>
+        <div class="row">
+          <footer-content width="88%" :params="footer" />
+        </div>
+      </div>
 
-    <div class="column layout-sidebar">
-      <sidebar :params="sidebarRight" />
+      <div class="column layout-sidebar">
+        <sidebar :params="sidebarRight" />
+      </div>
     </div>
   </div>
 </template>
@@ -85,19 +91,27 @@
     color: #FFF;
   }
 
-  .layout-fullpage {
+  .container-fullpage {
     height: 100vh;
+    margin: 0 auto;
+    position: relative;
+    width: 100%;
+  }
+  .row.fullpage {
+    margin-left: 0;
+    width: 100%;
+    padding: 0;
   }
   .layout-content {
     -webkit-box-flex: 0 !important;
-    -ms-flex: 0 0 84% !important;
-    flex: 0 0 84% !important;
-    max-width: 84% !important;
+    -ms-flex: 0 0 88% !important;
+    flex: 0 0 88% !important;
+    max-width: 88% !important;
   }
   .layout-sidebar {
     -webkit-box-flex: 0 !important;
-    -ms-flex: 0 0 8% !important;
-    flex: 0 0 8% !important;
-    max-width: 8% !important;
+    -ms-flex: 0 0 6% !important;
+    flex: 0 0 6% !important;
+    max-width: 6% !important;
   }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="container wrapper">
+  <div class="column wrapper">
     <div class="row">
       <template v-if="!active">
         <div class="column">
@@ -90,7 +90,10 @@ export default {
 
 <style scoped>
   .wrapper {
-      width: 43%;
+      -webkit-box-flex: 0 !important;
+      -ms-flex: 0 0 43% !important;
+      flex: 0 0 43% !important;
+      max-width: 43% !important;
   }
 
   .button {

@@ -33,6 +33,10 @@ module.exports = {
   */
   loading: { color: '#3B8070' },
   /*
+  ** Own or external plugins
+  */
+  plugins: [ '~/plugins/eventBus.js' ],
+  /*
   ** Build configuration
   */
   build: {

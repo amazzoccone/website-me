@@ -1,16 +1,18 @@
 <template>
   <div class="row">
-    <div v-if="positionIsRight" class="full-height column">
-      <div v-for="n in params.pages" :key="n" class="border-left" :style="borderStyle(n)"></div>
+    <div v-if="positionIsRight" class="full-height column column-border">
+      <div v-for="n in params.pages" :key="n" class="row border border-left" :style="borderStyle(n)"></div>
     </div>
-    <div class="full-height column">
+    <div class="column">
+      <div class="row full-height">
         <div :class="['content', params.position]">
           <div v-if="params.closeBtn" class="close-btn" @click="close">x</div>
           <div v-if="!params.closeBtn" :class="['title', 'rotate-'+ params.position]">{{ params.text }}</div>
         </div>
+      </div>
     </div>
-    <div v-if="positionIsLeft" class="full-height column">
-      <div v-for="n in params.pages" :key="n" class="border-right" :style="borderStyle(n)"></div>
+    <div v-if="positionIsLeft" class="full-height column column-border">
+      <div v-for="n in params.pages" :key="n" class="row border border-right" :style="borderStyle(n)"></div>
     </div>
   </div>
 </template>
@@ -101,10 +103,10 @@
     flex-direction: column;
   }
   .content.left {
-    margin-left: 35px;
+    margin-left: 70%;
   }
   .content.right {
-    margin-right: 35px;
+    margin-left: 20%;
   }
 
   .content > .title {
@@ -112,12 +114,21 @@
     display:block;
     position: absolute;
     top: 50%;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
   }
   .content > .close-btn {
     align-self: flex-start;
   }
 
+  .column-border {
+      padding: 0;
+  }
+
+  .border {
+    margin: 0;
+    width: 100%;
+  }
   .border-left {
     border-left: 2px solid #000;
   }
