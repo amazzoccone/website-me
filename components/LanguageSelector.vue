@@ -34,13 +34,17 @@ export default {
     font-weight: bold;
   }
   .button.circular {
-    height: 50px;
-    width: 50px;
-    line-height: 3;
+    height: 45px;
+    width: 45px;
+    line-height: 2.7;
     padding: 0px;
     border-radius: 50%;
   }
   .button.active {
     background-color: rgba(255,255,255, 0.3);
   }
+  .button.button-clear:focus {
+    color: #FFF;
+  }
+
 </style>

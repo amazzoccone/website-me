@@ -1,5 +1,5 @@
 <template>
-  <div class="clearfix">
+  <div class="clearfix wrapper">
     <logo :color="color" class="float-left header-space"/>
     <author class="author float-left header-space"/>
 
@@ -48,11 +48,11 @@ export default {
   /* Mobile First Media Queries */
 
   /* Base style */
-  .header-space {
-    margin-top: 2vh;
+  .wrapper {
+    padding: 20px 10px;
   }
   .author {
-      margin-left: 50px;
+      margin-left: 30px;
   }
 
   /* Larger than mobile screen */
@@ -60,8 +60,8 @@ export default {
 
   /* Larger than tablet screen */
   @media (min-width: 80.0rem) {
-    .header-space {
-      margin-top: 8vh;
+    .wrapper {
+      padding: 50px 30px;
     }
   }
 
