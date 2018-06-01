@@ -12,22 +12,17 @@
 </template>
 
 <script>
-export default {
-  props: {
-    color: {
-      type: String,
-      default: 'black'
-    }
-  },
-  data () {
-    return {
-      size: '45px'
+  export default {
+    props: {
+      color: {
+        type: String,
+        default: 'black'
+      }
+    },
+    data () {
+      return {
+        size: '45px'
+      }
     }
   }
-}
 </script>
-<style scoped>
-  .logo {
-    fill: white;
-  }
-</style>

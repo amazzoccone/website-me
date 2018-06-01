@@ -36,6 +36,8 @@ export default {
       else {
         this.activeImage = 0;
       }
+
+      this.$bus.$emit('background:change', this.activeImage+1);
     }, this.duration);
   },
 }

@@ -1,90 +1,91 @@
 <template>
   <div class="row">
     <div v-if="positionIsRight" class="full-height column">
-      <div v-for="n in pages" :key="n" class="border-left" :style="borderStyle(n)"></div>
+      <div v-for="n in params.pages" :key="n" class="border-left" :style="borderStyle(n)"></div>
     </div>
     <div class="full-height column">
-        <div :class="['content', position]">
-          <div v-if="closeBtn" class="close-btn" @click="close">x</div>
-          <div v-if="!closeBtn" :class="['title', 'rotate-'+ position]">{{ text }}</div>
+        <div :class="['content', params.position]">
+          <div v-if="params.closeBtn" class="close-btn" @click="close">x</div>
+          <div v-if="!params.closeBtn" :class="['title', 'rotate-'+ params.position]">{{ params.text }}</div>
         </div>
     </div>
     <div v-if="positionIsLeft" class="full-height column">
-      <div v-for="n in pages" :key="n" class="border-right" :style="borderStyle(n)"></div>
+      <div v-for="n in params.pages" :key="n" class="border-right" :style="borderStyle(n)"></div>
     </div>
   </div>
 </template>
 
 <script>
-export default {
-  props: {
-    position: {
-      type: String,
-      required: true,
+  export default {
+    props: {
+      params: {
+        type: Object,
+        required: true,
 
-      validator: function (value) {
-        return ['left', 'right'].indexOf(value) !== -1
-      }
-    },
-    text: {
-      type: String,
-    },
-    closeBtn: {
-      type: Boolean,
-      default: false
-    },
-    pages: {
-      type: Number,
-      default: 1
-    },
-    page: {
-      type: Number,
-      default: 1
-    },
-    //TODO: Validate color as hexa
-    color: {
-      type: String,
-      default: '#000'
-    },
-  },
-  computed: {
-    borderPosition() {
-      return this.positionIsLeft ? 'right' : 'left';
-    },
-    positionIsLeft() {
-      return this.position === 'left';
-    },
-    positionIsRight() {
-      return this.position === 'right';
-    }
-  },
-  methods: {
-    borderStyle(n) {
-      let height = 100/this.pages;
-      let opacity = n === this.page ? 0.8 : 0.4;
-
-      return {
-        'border-color': this.hexToRgbA(this.color, opacity),
-        height: height + 'vh'
-      }
-    },
-    hexToRgbA(hex, opacity = 1) {
-      var c;
-      if(/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
-          c= hex.substring(1).split('');
-          if(c.length== 3){
-              c= [c[0], c[0], c[1], c[1], c[2], c[2]];
+        validator: function (object) {
+          if (!_.has(object, 'position') || ['left', 'right'].indexOf(object.position) == -1) {
+            return false;
           }
-          c= '0x'+c.join('');
-          return 'rgba('+[(c>>16)&255, (c>>8)&255, c&255].join(',')+','+opacity+')';
-      }
-      throw new Error('Bad Hex');
+
+          if (!_.has(object, 'text') || !_.isString(object.text)) {
+            return false;
+          }
+
+          if (!_.has(object, 'pages') || !_.isNumber(object.pages)) {
+            return false;
+          }
+
+          if (!_.has(object, 'page') || !_.isNumber(object.page)) {
+            return false;
+          }
+
+          if (!_.has(object, 'color') || !_.isString(object.text)) {
+            return false;
+          }
+          //TODO: Validate color as hexa
+
+          return true;
+        }
+      },
     },
-    close() {
-      this.$emit('sidebar-close-clicked');
+    computed: {
+      borderPosition() {
+        return this.positionIsLeft ? 'right' : 'left';
+      },
+      positionIsLeft() {
+        return this.params.position === 'left';
+      },
+      positionIsRight() {
+        return this.params.position === 'right';
+      }
+    },
+    methods: {
+      borderStyle(n) {
+        let height = 100/this.params.pages;
+        let opacity = n === this.params.page ? 0.8 : 0.4;
+
+        return {
+          'border-color': this.hexToRgbA(this.params.color, opacity),
+          height: height + 'vh'
+        }
+      },
+      hexToRgbA(hex, opacity = 1) {
+        var c;
+        if(/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
+            c= hex.substring(1).split('');
+            if(c.length== 3){
+                c= [c[0], c[0], c[1], c[1], c[2], c[2]];
+            }
+            c= '0x'+c.join('');
+            return 'rgba('+[(c>>16)&255, (c>>8)&255, c&255].join(',')+','+opacity+')';
+        }
+        throw new Error('Bad Hex');
+      },
+      close() {
+        this.$emit('sidebar-close-clicked');
+      }
     }
-  },
-}
+  }
 </script>
 
 <style scoped>

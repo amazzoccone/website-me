@@ -23,27 +23,25 @@
 <script>
 
 export default {
-  data() {
-    return {
-      page: 1
-    }
-  },
   fetch ({ store, app }) {
     let images = ['/IMG_0546.JPG', 'IMG_0529.JPG', 'IMG_0529.JPG'];
     let pages = images.length;
 
     store.commit('layout', {
-      color: '#FFF',
-      images: images,
+      general: {
+        color: '#FFF',
+      },
+      background: {
+        images: images,
+        page: 1
+      },
       sidebarLeft: {
         text: app.i18n.t('links.about'),
         pages: pages,
-        page: 1
       },
       sidebarRight: {
         text: app.i18n.t('links.works'),
         pages: pages,
-        page: 1
       },
       header: {
         author: true,
@@ -54,6 +52,16 @@ export default {
         social: true
       }
     })
+  },
+  created() {
+    this.$bus.$on('background:change', (page) => {
+      this.$store.commit('setLayoutPage', page);
+    });
+  },
+  computed: {
+    page() {
+      return this.$store.state.layout.background.page;
+    }
   }
 }
 </script>
@@ -89,6 +97,11 @@ export default {
     }
     .works-mobile {
       display: none;
+    }
+
+    .content {
+      margin-top: 15vh;
+      width: 60%;
     }
   }
 

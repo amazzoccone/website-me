@@ -8,6 +8,9 @@ const createStore = () => {
     mutations: {
       layout (state, config) {
         state.layout = config;
+      },
+      setLayoutPage(state, page) {
+        state.layout.background.page = page;
       }
     }
   })

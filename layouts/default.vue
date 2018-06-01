@@ -1,10 +1,9 @@
 <template>
   <div class="layout-fullpage row">
-    <background-page color="#EEE" :images="config.images" />
+    <background-page color="#EEE" :images="background.images" />
 
     <div class="column layout-sidebar">
-      <sidebar position="left" :text="sidebarLeft.text" :color="config.color"
-        :pages="sidebarLeft.pages" :page="sidebarLeft.page" />
+      <sidebar :params="sidebarLeft" />
     </div>
 
     <div class="column layout-content">
@@ -16,8 +15,7 @@
     </div>
 
     <div class="column layout-sidebar">
-      <sidebar position="right" :text="sidebarRight.text" :color="config.color"
-        :pages="sidebarRight.pages" :page="sidebarRight.page" />
+      <sidebar :params="sidebarRight" />
     </div>
   </div>
 </template>
@@ -33,17 +31,32 @@
       config () {
         return this.$store.state.layout;
       },
+      general() {
+        return _.get(this.config, 'general', {});
+      },
+
+      background() {
+        return _.get(this.config, 'background', {});
+      },
       footer() {
-        return _.get(this.config, 'footer', {});
+        return _.merge(_.get(this.config, 'footer', {}), this.general);
       },
       header() {
-        return _.get(this.config, 'header', {});
+        return _.merge(_.get(this.config, 'header', {}), this.general);
       },
       sidebarLeft() {
-        return _.get(this.config, 'sidebarLeft', {});
+        return _.merge(
+          _.get(this.config, 'sidebarLeft', {}),
+          this.general,
+          { position: 'left', page: this.background.page }
+        );
       },
       sidebarRight() {
-        return _.get(this.config, 'sidebarRight', {});
+        return _.merge(
+          _.get(this.config, 'sidebarRight', {}),
+          this.general,
+          { position: 'right', page: this.background.page }
+        );
       }
     },
     components: {
