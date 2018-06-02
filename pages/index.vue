@@ -49,7 +49,10 @@ export default {
         logo: {},
       },
       footer: {
-        social: true
+        social: true,
+        label: {
+          text: 'scroll'
+        }
       }
     })
   },

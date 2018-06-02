@@ -1,9 +1,7 @@
 <template>
-  <div class="text-center">
-    <div class="footer" :style="{width: width, left: left}">
-      <page-label v-if="showLabel" position="bottom" :text="labelText"/>
-      <social-links v-if="params.social" class="float-right"/>
-    </div>
+  <div class="footer" :style="{width: width, left: left}">
+    <page-label v-if="showLabel" position="bottom" :text="labelText" :color="params.color"/>
+    <social-links v-if="params.social" class="float-right"/>
   </div>
 </template>
 
