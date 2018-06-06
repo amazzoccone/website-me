@@ -1,24 +1,28 @@
 <template>
-  <div class="row">
+  <div class="row pointer" @click="clickHandler">
     <div v-if="positionIsRight" class="full-height column column-border">
-      <div v-for="n in params.pages" :key="n" class="row border border-left" :style="borderStyle(n)"></div>
+      <div v-for="n in params.pages" :key="n" :class="borderClass(n, 'left')" :style="borderStyle"></div>
     </div>
     <div class="column">
       <div class="row full-height">
-        <div :class="['content', params.position]">
+        <div :class="titleClass">
           <div v-if="params.closeBtn" class="close-btn" @click="close">x</div>
           <div v-if="!params.closeBtn" :class="['title', 'rotate-'+ params.position]">{{ params.text }}</div>
         </div>
       </div>
     </div>
     <div v-if="positionIsLeft" class="full-height column column-border">
-      <div v-for="n in params.pages" :key="n" class="row border border-right" :style="borderStyle(n)"></div>
+      <div v-for="n in params.pages" :key="n" :class="borderClass(n, 'right')" :style="borderStyle"></div>
     </div>
   </div>
 </template>
 
 <script>
+  import ConfigMixin from './ConfigMixin.vue';
+
   export default {
+    mixins: [ConfigMixin],
+
     props: {
       params: {
         type: Object,
@@ -41,11 +45,6 @@
             return false;
           }
 
-          if (!_.has(object, 'color') || !_.isString(object.text)) {
-            return false;
-          }
-          //TODO: Validate color as hexa
-
           return true;
         }
       },
@@ -59,29 +58,30 @@
       },
       positionIsRight() {
         return this.params.position === 'right';
+      },
+      borderStyle() {
+        return {
+          height: 100/this.params.pages + 'vh'
+        }
+      },
+      titleClass() {
+        return {
+          'content': true,
+          [this.params.position]: true,
+          [this.color]: true
+        }
       }
     },
     methods: {
-      borderStyle(n) {
-        let height = 100/this.params.pages;
-        let opacity = n === this.params.page ? 0.8 : 0.4;
-
-        return {
-          'border-color': this.hexToRgbA(this.params.color, opacity),
-          height: height + 'vh'
-        }
+      clickHandler(e) {
+          this.$bus.$emit('sidebar:clicked', this.params);
       },
-      hexToRgbA(hex, opacity = 1) {
-        var c;
-        if(/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
-            c= hex.substring(1).split('');
-            if(c.length== 3){
-                c= [c[0], c[0], c[1], c[1], c[2], c[2]];
-            }
-            c= '0x'+c.join('');
-            return 'rgba('+[(c>>16)&255, (c>>8)&255, c&255].join(',')+','+opacity+')';
+      borderClass(n, position) {
+        return {
+          ['row border border-'+position]: true,
+          [this.color]: true,
+          active: n === this.params.page
         }
-        throw new Error('Bad Hex');
       },
       close() {
         this.$emit('sidebar-close-clicked');
@@ -93,6 +93,9 @@
 <style scoped>
   .full-height {
     height: 100vh;
+  }
+  .pointer {
+    cursor: pointer;
   }
 
   .content {
@@ -121,6 +124,15 @@
     align-self: flex-start;
   }
 
+  /* Color White */
+  .content.white {
+    color: #FFF;
+  }
+  /* Color Black */
+  .content.black {
+    color: #000;
+  }
+
   .column-border {
       padding: 0;
   }
@@ -135,6 +147,22 @@
   .border-right {
     border-right: 2px solid #000;
   }
+
+  /* Color White */
+  .border.white {
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+  .border.white.active {
+    border-color: rgba(255, 255, 255, 0.8);
+  }
+  /* Color Black */
+  .border.black {
+    border-color: rgba(0, 0, 0, 0.4);
+  }
+  .border.black.active {
+    border-color: rgba(0, 0, 0, 0.8);
+  }
+
 
   .rotate-left {
     -webkit-transform:rotate(-90deg);

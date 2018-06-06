@@ -1,11 +1,11 @@
 <template>
   <div class="clearfix wrapper">
     <logo :color="color" class="float-left header-space"/>
-    <author class="author float-left header-space"/>
+    <author :color="color" class="author float-left header-space"/>
 
     <page-label v-if="showLabel" position="top" :text="labelText"/>
 
-    <language-selector class="float-right header-space"/>
+    <language-selector :color="color" class="float-right header-space"/>
   </div>
 </template>
 

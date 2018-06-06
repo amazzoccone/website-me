@@ -15,7 +15,11 @@
 </template>
 
 <script>
+  import ConfigMixin from './ConfigMixin.vue';
+
   export default {
+    mixins: [ConfigMixin],
+    
     props: {
       position: {
         type: String,
@@ -28,10 +32,6 @@
         type: String,
         required: true
       },
-      color: {
-        type: String,
-        default: '#000'
-      }
     },
     computed: {
       isBottom() {

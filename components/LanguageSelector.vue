@@ -2,35 +2,46 @@
   <div>
     <nuxt-link v-for="locale in locales" :key="locale.code"
       :to="switchLocalePath(locale.code)"
-      :class="['button button-clear circular', locale.code === active ? 'active' : '']">
+      :class="classObj(locale)">
       {{ locale.code }}
     </nuxt-link>
   </div>
 </template>
 
 <script>
-export default {
-  computed: {
-    locales() {
-      return this.$i18n.locales;
+  import ConfigMixin from './ConfigMixin.vue';
+
+  export default {
+    mixins: [ConfigMixin],
+
+    methods: {
+      classObj(locale) {
+        return {
+          'button button-clear circular': true,
+          'active': locale.code === this.active,
+          [this.color]: true
+        };
+      },
     },
-    active() {
-      return this.$i18n.locale;
+    computed: {
+      locales() {
+        return this.$i18n.locales;
+      },
+      active() {
+        return this.$i18n.locale;
+      }
     }
   }
-}
 </script>
 
 <style scoped>
   .button {
     margin: 0px;
-    color: #FFF;
     font-size: 0.6em;
     font-weight: 300;
     text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
   }
   .button:hover {
-    color: #FFF;
     font-weight: bold;
   }
   .button.circular {
@@ -40,11 +51,20 @@ export default {
     padding: 0px;
     border-radius: 50%;
   }
-  .button.active {
-    background-color: rgba(255,255,255, 0.3);
-  }
-  .button.button-clear:focus {
+
+  /* Color White */
+  .button.white, .button.white:hover, .button.white.button-clear:focus {
     color: #FFF;
+  }
+  .button.white.active {
+    background-color: rgba(255,255,255, 0.2);
+  }
+  /* Color Black */
+  .button.black, .button.black:hover, .button.black.button-clear:focus {
+    color: #111;
+  }
+  .button.black.active {
+    background-color: rgba(0,0,0, 0.2);
   }
 
 </style>

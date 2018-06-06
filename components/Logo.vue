@@ -12,13 +12,11 @@
 </template>
 
 <script>
+  import ConfigMixin from './ConfigMixin.vue';
+
   export default {
-    props: {
-      color: {
-        type: String,
-        default: 'black'
-      }
-    },
+    mixins: [ConfigMixin],
+
     data () {
       return {
         size: '45px'

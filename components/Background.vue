@@ -17,6 +17,7 @@ export default {
     },
     images: {
       type: Array,
+      default: () => { return []; }
     },
     duration: {
       type: Number,
@@ -29,16 +30,18 @@ export default {
     }
   },
   mounted() {
-    setInterval(() => {
-      if (this.activeImage < this.images.length-1) {
-        this.activeImage++;
-      }
-      else {
-        this.activeImage = 0;
-      }
+    if (this.images.length > 0) {
+      setInterval(() => {
+        if (this.activeImage < this.images.length-1) {
+          this.activeImage++;
+        }
+        else {
+          this.activeImage = 0;
+        }
 
-      this.$bus.$emit('background:change', this.activeImage+1);
-    }, this.duration);
+        this.$bus.$emit('background:change', this.activeImage + 1);
+      }, this.duration);
+    }
   },
 }
 </script>

@@ -4,7 +4,7 @@
       <background-page color="#EEE" :images="background.images" />
 
       <div class="column layout-sidebar">
-        <sidebar :params="sidebarLeft" />
+        <sidebar :color="this.general.color" :params="sidebarLeft" />
       </div>
 
       <div class="column layout-content">
@@ -20,7 +20,7 @@
       </div>
 
       <div class="column layout-sidebar">
-        <sidebar :params="sidebarRight" />
+        <sidebar :color="this.general.color" :params="sidebarRight" />
       </div>
     </div>
   </div>
@@ -51,18 +51,10 @@
         return _.merge(_.get(this.config, 'header', {}), this.general);
       },
       sidebarLeft() {
-        return _.merge(
-          _.get(this.config, 'sidebarLeft', {}),
-          this.general,
-          { position: 'left', page: this.background.page }
-        );
+        return _.merge(_.get(this.config, 'sidebarLeft', {}), { position: 'left' });
       },
       sidebarRight() {
-        return _.merge(
-          _.get(this.config, 'sidebarRight', {}),
-          this.general,
-          { position: 'right', page: this.background.page }
-        );
+        return _.merge(_.get(this.config, 'sidebarRight', {}), { position: 'right' });
       }
     },
     components: {
