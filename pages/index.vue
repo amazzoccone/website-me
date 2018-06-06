@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div ref="content" class="content">
     <div class="row">
       <div class="works-desktop">
         <span class="works-ref">
@@ -29,7 +29,7 @@ export default {
 
     store.commit('layout', {
       general: {
-        color: '#FFF',
+        color: 'white',
       },
       background: {
         images: images,
@@ -38,10 +38,12 @@ export default {
       sidebarLeft: {
         text: app.i18n.t('links.about'),
         pages: pages,
+        page: 1
       },
       sidebarRight: {
         text: app.i18n.t('links.works'),
         pages: pages,
+        page: 1
       },
       header: {
         author: true,
@@ -50,15 +52,21 @@ export default {
       },
       footer: {
         social: true,
-        label: {
-          text: 'scroll'
-        }
       }
-    })
+    });
   },
   created() {
     this.$bus.$on('background:change', (page) => {
       this.$store.commit('setLayoutPage', page);
+    });
+
+    this.$bus.$on('sidebar:clicked', (params) => {
+      if (params.position == 'left') {
+        this.$router.push('/about');
+      }
+      else if (params.position == 'right') {
+        this.$router.push('/works');
+      }
     });
   },
   computed: {
