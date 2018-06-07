@@ -1,10 +1,10 @@
 <template>
   <div class="container-fullpage">
     <div class="row fullpage">
-      <background-page color="#EEE" :images="background.images" />
+      <background-page :color="background.color" :images="background.images" />
 
       <div class="column layout-sidebar">
-        <sidebar :color="this.general.color" :params="sidebarLeft" />
+        <sidebar key="left" :color="general.color" :params="sidebarLeft" />
       </div>
 
       <div class="column layout-content">
@@ -20,7 +20,7 @@
       </div>
 
       <div class="column layout-sidebar">
-        <sidebar :color="this.general.color" :params="sidebarRight" />
+        <sidebar key="right" :color="general.color" :params="sidebarRight" />
       </div>
     </div>
   </div>
@@ -35,26 +35,30 @@
   export default {
     computed: {
       config () {
-        return this.$store.state.layout;
+        return _.get(this.$store.state, 'layout');
       },
       general() {
         return _.get(this.config, 'general', {});
       },
-
       background() {
-        return _.merge(_.get(this.config, 'background', {}), this.general);
+        let params = _.clone(this.general);
+        return _.merge(params, _.get(this.config, 'background', {}));
       },
       footer() {
-        return _.merge(_.get(this.config, 'footer', {}), this.general);
+        let params = _.clone(this.general);
+        return _.merge(params, _.get(this.config, 'footer', {}));
       },
       header() {
-        return _.merge(_.get(this.config, 'header', {}), this.general);
+        let params = _.clone(this.general);
+        return _.merge(params, _.get(this.config, 'header', {}));
       },
       sidebarLeft() {
-        return _.merge(_.get(this.config, 'sidebarLeft', {}), { position: 'left' }, this.general);
+        let params = _.clone(this.general);
+        return _.merge(params, { position: 'left' }, _.get(this.config, 'sidebarLeft', {}));
       },
       sidebarRight() {
-        return _.merge(_.get(this.config, 'sidebarRight', {}), { position: 'right' }, this.general);
+        let params = _.clone(this.general);
+        return _.merge(params, { position: 'right' }, _.get(this.config, 'sidebarRight', {}));
       }
     },
     components: {

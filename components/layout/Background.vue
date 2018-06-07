@@ -2,8 +2,8 @@
   <div class="back">
     <div class="background" :style="{'background-color': color}"></div>
     <div v-for="(image, key) in images" :key="key"
-      :class="['background image', activeImage === key ? '' : 'hidden']"
-      :style="{background: 'url('+image+') no-repeat center center fixed'}"
+      :class="classObj(key)"
+      :style="styleObj(image)"
     ></div>
   </div>
 </template>
@@ -13,7 +13,7 @@
     props: {
       color: {
         type: String,
-        default: '#FFF'
+        default: "white"
       },
       images: {
         type: Array,
@@ -43,6 +43,19 @@
         }, this.duration);
       }
     },
+    methods: {
+      styleObj(image) {
+        return {
+          background: `url(${image}) no-repeat center center fixed`
+        };
+      },
+      classObj(key) {
+        return {
+          'background image': true,
+          'hidden': this.activeImage !== key
+        };
+      },
+    }
   }
 </script>
 
@@ -62,7 +75,6 @@
     bottom: 0;
     right: 0;
     overflow: auto;
-    background: lime; /* Just to visualize the extent */
   }
   .image {
     -webkit-background-size: cover;

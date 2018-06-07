@@ -33,18 +33,6 @@
             return false;
           }
 
-          if (!_.has(object, 'text') || !_.isString(object.text)) {
-            return false;
-          }
-
-          if (!_.has(object, 'pages') || !_.isNumber(object.pages)) {
-            return false;
-          }
-
-          if (!_.has(object, 'page') || !_.isNumber(object.page)) {
-            return false;
-          }
-
           return true;
         }
       },

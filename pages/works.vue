@@ -24,6 +24,7 @@ export default {
     store.commit('layout', {
       general: {
         color: 'black',
+        page: 1
       },
       background: {
         color: 'white'
@@ -31,12 +32,10 @@ export default {
       sidebarLeft: {
         text: app.i18n.t('links.about'),
         pages: pages,
-        page: 1
       },
       sidebarRight: {
         text: 'x',  //&#10006;,
         pages: pages,
-        page: 1
       },
       header: {
         author: true,

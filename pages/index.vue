@@ -2,7 +2,7 @@
   <div ref="content" class="content">
     <div class="row">
       <div class="works works-desktop">
-        <works-ref :page="page"/>
+        <works-ref key="wr-top" :page="page"/>
       </div>
     </div>
     <div class="row">
@@ -10,7 +10,7 @@
     </div>
     <div class="row">
       <div class="works works-mobile">
-        <works-ref :page="page"/>
+        <works-ref key="wr-botton" :page="page"/>
       </div>
     </div>
   </div>
@@ -31,6 +31,7 @@
         },
         background: {
           images: images,
+          color: 'white'
         },
         sidebarLeft: {
           text: app.i18n.t('links.about'),
@@ -66,7 +67,7 @@
     },
     computed: {
       page() {
-        return this.$store.state.layout.background.page;
+        return this.$store.state.layout.general.page;
       }
     },
     components: {
