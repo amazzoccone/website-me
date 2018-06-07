@@ -27,20 +27,18 @@
       store.commit('layout', {
         general: {
           color: 'white',
+          page: 1
         },
         background: {
           images: images,
-          page: 1
         },
         sidebarLeft: {
           text: app.i18n.t('links.about'),
           pages: pages,
-          page: 1
         },
         sidebarRight: {
           text: app.i18n.t('links.works'),
           pages: pages,
-          page: 1
         },
         header: {
           author: true,

@@ -24,3 +24,9 @@
     }
   }
 </script>
+
+<style>
+  .logo {
+    margin-left: -10px;
+  }
+</style>

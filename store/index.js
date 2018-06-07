@@ -10,7 +10,7 @@ const createStore = () => {
         state.layout = config;
       },
       setLayoutPage(state, page) {
-        state.layout.background.page = page;
+        state.layout.general.page = page;
       }
     }
   })

@@ -42,7 +42,7 @@
       },
 
       background() {
-        return _.get(this.config, 'background', {});
+        return _.merge(_.get(this.config, 'background', {}), this.general);
       },
       footer() {
         return _.merge(_.get(this.config, 'footer', {}), this.general);
@@ -51,10 +51,10 @@
         return _.merge(_.get(this.config, 'header', {}), this.general);
       },
       sidebarLeft() {
-        return _.merge(_.get(this.config, 'sidebarLeft', {}), { position: 'left' });
+        return _.merge(_.get(this.config, 'sidebarLeft', {}), { position: 'left' }, this.general);
       },
       sidebarRight() {
-        return _.merge(_.get(this.config, 'sidebarRight', {}), { position: 'right' });
+        return _.merge(_.get(this.config, 'sidebarRight', {}), { position: 'right' }, this.general);
       }
     },
     components: {

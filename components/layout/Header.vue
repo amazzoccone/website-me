@@ -6,6 +6,9 @@
     <page-label v-if="showLabel" position="top" :text="labelText"/>
 
     <language-selector :color="color" class="float-right header-space locale-selector"/>
+    <div class="float-right menu-icon">
+      <menu-icon :color="color"/>
+    </div>
   </div>
 </template>
 
@@ -13,6 +16,7 @@
   import Author from './specific/Author.vue'
   import LanguageSelector from './specific/LanguageSelector.vue'
   import Logo from './specific/Logo.vue'
+  import MenuIcon from './specific/MenuIcon.vue'
   import PageLabel from './specific/PageLabel.vue'
 
   export default {
@@ -39,6 +43,7 @@
       Author,
       LanguageSelector,
       Logo,
+      MenuIcon,
       PageLabel
     }
   }
@@ -49,7 +54,7 @@
 
   /* Base style */
   .wrapper {
-    padding: 20px 10px;
+    padding: 30px 30px;
   }
   .author {
       margin-left: 30px;
@@ -59,16 +64,19 @@
   }
 
   /* Larger than mobile screen */
-  @media (min-width: 40.0rem) {
-    .locale-selector {
-      display: block !important;
-    }
-  }
+  @media (min-width: 40.0rem) { }
 
   /* Larger than tablet screen */
   @media (min-width: 80.0rem) {
     .wrapper {
       padding: 50px 30px;
+    }
+    
+    .locale-selector {
+      display: block !important;
+    }
+    .menu-icon {
+      display: none !important;
     }
   }
 

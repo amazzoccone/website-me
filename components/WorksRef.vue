@@ -13,7 +13,7 @@
   export default {
     props: {
       page: {
-        type: String,
+        type: Number,
         required: true
       }
     },
