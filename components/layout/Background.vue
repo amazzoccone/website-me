@@ -9,41 +9,41 @@
 </template>
 
 <script>
-export default {
-  props: {
-    color: {
-      type: String,
-      default: '#FFF'
+  export default {
+    props: {
+      color: {
+        type: String,
+        default: '#FFF'
+      },
+      images: {
+        type: Array,
+        default: () => { return []; }
+      },
+      duration: {
+        type: Number,
+        default: 3000 //in ms
+      },
     },
-    images: {
-      type: Array,
-      default: () => { return []; }
+    data() {
+      return {
+          activeImage: 0
+      }
     },
-    duration: {
-      type: Number,
-      default: 3000 //in ms
-    },
-  },
-  data() {
-    return {
-        activeImage: 0
-    }
-  },
-  mounted() {
-    if (this.images.length > 0) {
-      setInterval(() => {
-        if (this.activeImage < this.images.length-1) {
-          this.activeImage++;
-        }
-        else {
-          this.activeImage = 0;
-        }
+    mounted() {
+      if (this.images.length > 0) {
+        setInterval(() => {
+          if (this.activeImage < this.images.length-1) {
+            this.activeImage++;
+          }
+          else {
+            this.activeImage = 0;
+          }
 
-        this.$bus.$emit('background:change', this.activeImage + 1);
-      }, this.duration);
-    }
-  },
-}
+          this.$bus.$emit('background:change', this.activeImage + 1);
+        }, this.duration);
+      }
+    },
+  }
 </script>
 
 <style scoped>

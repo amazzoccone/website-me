@@ -1,80 +1,80 @@
 <template>
   <div ref="content" class="content">
     <div class="row">
-      <div class="works-desktop">
-        <span class="works-ref">
-          <b>{{ '/0' + page }}</b>
-        </span>
-        <span class="works-ref">
-          {{ $t('home.works') }}
-        </span>
+      <div class="works works-desktop">
+        <works-ref :page="page"/>
       </div>
     </div>
     <div class="row">
       <h1 class="title">{{ $t('home.title') }}</h1>
     </div>
     <div class="row">
-      <div class="works-mobile float-right">
+      <div class="works works-mobile">
+        <works-ref :page="page"/>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+  import WorksRef from '~/components/WorksRef.vue';
 
-export default {
-  fetch ({ store, app }) {
-    let images = ['/IMG_0546.JPG', 'IMG_0529.JPG', 'IMG_0529.JPG'];
-    let pages = images.length;
+  export default {
+    fetch ({ store, app }) {
+      let images = ['/IMG_0546.JPG', 'IMG_0529.JPG', 'IMG_0529.JPG'];
+      let pages = images.length;
 
-    store.commit('layout', {
-      general: {
-        color: 'white',
-      },
-      background: {
-        images: images,
-        page: 1
-      },
-      sidebarLeft: {
-        text: app.i18n.t('links.about'),
-        pages: pages,
-        page: 1
-      },
-      sidebarRight: {
-        text: app.i18n.t('links.works'),
-        pages: pages,
-        page: 1
-      },
-      header: {
-        author: true,
-        languageSelector: true,
-        logo: {},
-      },
-      footer: {
-        social: true,
-      }
-    });
-  },
-  created() {
-    this.$bus.$on('background:change', (page) => {
-      this.$store.commit('setLayoutPage', page);
-    });
+      store.commit('layout', {
+        general: {
+          color: 'white',
+        },
+        background: {
+          images: images,
+          page: 1
+        },
+        sidebarLeft: {
+          text: app.i18n.t('links.about'),
+          pages: pages,
+          page: 1
+        },
+        sidebarRight: {
+          text: app.i18n.t('links.works'),
+          pages: pages,
+          page: 1
+        },
+        header: {
+          author: true,
+          languageSelector: true,
+          logo: {},
+        },
+        footer: {
+          social: true,
+        }
+      });
+    },
+    created() {
+      this.$bus.$on('background:change', (page) => {
+        this.$store.commit('setLayoutPage', page);
+      });
 
-    this.$bus.$on('sidebar:clicked', (params) => {
-      if (params.position == 'left') {
-        this.$router.push('/about');
+      this.$bus.$on('sidebar:clicked', (params) => {
+        if (params.position == 'left') {
+          this.$router.push('/about');
+        }
+        else if (params.position == 'right') {
+          this.$router.push('/works');
+        }
+      });
+    },
+    computed: {
+      page() {
+        return this.$store.state.layout.background.page;
       }
-      else if (params.position == 'right') {
-        this.$router.push('/works');
-      }
-    });
-  },
-  computed: {
-    page() {
-      return this.$store.state.layout.background.page;
+    },
+    components: {
+      WorksRef
     }
   }
-}
 </script>
 
 <style scoped>
@@ -83,26 +83,28 @@ export default {
   /* Base style */
   .content {
     margin: 0 auto;
-    width: 60%;
-  }
-
-  .works-ref {
-    font-size: 1.2rem;
-    float: right;
-    line-height: 1.2;
+    margin-top: 10vh;
+    width: 70%;
   }
 
   .title {
-    font-size: 5rem;
+    font-size: 3.5rem;
     text-align: center;
+    letter-spacing: 1px;
+  }
+
+  .works {
+    margin-left: 55%;
   }
   .works-desktop {
-    width: 80%;
     display: none;
   }
 
   /* Larger than mobile screen */
   @media (min-width: 40.0rem) {
+    .title {
+      font-size: 4rem;
+    }
     .works-desktop {
       display: block;
     }
@@ -120,6 +122,10 @@ export default {
   @media (min-width: 80.0rem) { }
 
   /* Larger than desktop screen */
-  @media (min-width: 120.0rem) { }
+  @media (min-width: 120.0rem) {
+    .title {
+      font-size: 5rem;
+    }
+  }
 
 </style>

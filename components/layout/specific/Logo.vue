@@ -12,7 +12,7 @@
 </template>
 
 <script>
-  import ConfigMixin from './ConfigMixin.vue';
+  import ConfigMixin from '../ConfigMixin.vue';
 
   export default {
     mixins: [ConfigMixin],

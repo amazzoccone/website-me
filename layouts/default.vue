@@ -27,10 +27,10 @@
 </template>
 
 <script>
-  import BackgroundPage from '~/components/Background.vue'
-  import FooterContent from '~/components/Footer.vue'
-  import HeaderContent from '~/components/Header.vue'
-  import Sidebar from '~/components/Sidebar.vue'
+  import BackgroundPage from '~/components/layout/Background.vue'
+  import FooterContent from '~/components/layout/Footer.vue'
+  import HeaderContent from '~/components/layout/Header.vue'
+  import Sidebar from '~/components/layout/Sidebar.vue'
 
   export default {
     computed: {
@@ -67,6 +67,9 @@
 </script>
 
 <style>
+  /* Mobile First Media Queries */
+
+  /* Base style */
   html {
     font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     font-size: 16px;
@@ -94,16 +97,31 @@
     width: 100%;
     padding: 0;
   }
-  .layout-content {
-    -webkit-box-flex: 0 !important;
-    -ms-flex: 0 0 88% !important;
-    flex: 0 0 88% !important;
-    max-width: 88% !important;
-  }
+
   .layout-sidebar {
-    -webkit-box-flex: 0 !important;
-    -ms-flex: 0 0 6% !important;
-    flex: 0 0 6% !important;
-    max-width: 6% !important;
+    display: none !important;
   }
+
+  /* Larger than mobile screen */
+  @media (min-width: 40.0rem) {
+    .layout-content {
+      -webkit-box-flex: 0 !important;
+      -ms-flex: 0 0 88% !important;
+      flex: 0 0 88% !important;
+      max-width: 88% !important;
+    }
+    .layout-sidebar {
+      display: block !important;
+      -webkit-box-flex: 0 !important;
+      -ms-flex: 0 0 6% !important;
+      flex: 0 0 6% !important;
+      max-width: 6% !important;
+    }
+  }
+
+  /* Larger than tablet screen */
+  @media (min-width: 80.0rem) { }
+
+  /* Larger than desktop screen */
+  @media (min-width: 120.0rem) { }
 </style>
