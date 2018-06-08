@@ -19,7 +19,7 @@
 
     data () {
       return {
-        size: '45px'
+        size: '42px'
       }
     }
   }

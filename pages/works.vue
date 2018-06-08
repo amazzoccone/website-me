@@ -34,7 +34,7 @@ export default {
         pages: pages,
       },
       sidebarRight: {
-        text: 'x',  //&#10006;,
+        text: app.i18n.t('links.works'),
         pages: pages,
       },
       header: {

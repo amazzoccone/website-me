@@ -7,12 +7,12 @@
       <div class="row full-height">
         <div :class="titleClass">
           <div v-if="params.closeBtn" class="close-btn" @click="close">x</div>
-          <div v-if="!params.closeBtn" :class="['title', 'rotate-'+ params.position]">{{ params.text }}</div>
+          <div v-if="!params.closeBtn" :class="['title', 'rotate-90']">{{ params.text }}</div>
         </div>
       </div>
     </div>
     <div v-if="positionIsLeft" class="full-height column column-border">
-      <div v-for="n in params.pages" :key="n" :class="borderClass(n, 'right')" :style="borderStyle"></div>
+        <div v-for="n in params.pages" :key="n" :class="borderClass(n, 'right')" :style="borderStyle"></div>
     </div>
   </div>
 </template>
@@ -152,18 +152,11 @@
   }
 
 
-  .rotate-left {
+  .rotate-90 {
     -webkit-transform:rotate(-90deg);
     -moz-transform:rotate(-90deg);
     -o-transform: rotate(-90deg);
     -ms-transform:rotate(-90deg);
     transform: rotate(-90deg);
-  }
-  .rotate-right {
-    -webkit-transform:rotate(90deg);
-    -moz-transform:rotate(90deg);
-    -o-transform: rotate(90deg);
-    -ms-transform:rotate(90deg);
-    transform: rotate(90deg);
   }
 </style>

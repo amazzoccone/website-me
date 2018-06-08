@@ -5,7 +5,7 @@
 
     <page-label v-if="showLabel" position="top" :text="labelText"/>
 
-    <language-selector :color="color" class="float-right header-space locale-selector"/>
+    <language-selector v-if="showLocaleSelector" :color="color" class="float-right header-space locale-selector"/>
     <div class="float-right menu-icon">
       <menu-icon :color="color"/>
     </div>
@@ -32,6 +32,9 @@
       showLabel() {
         return _.has(this.params, 'label');
       },
+      showLocaleSelector() {
+        return _.get(this.params, 'languageSelector', false);
+      },
       labelText() {
         return _.get(this.params, 'label.text');
       },
@@ -57,7 +60,7 @@
     padding: 30px 30px;
   }
   .author {
-      margin-left: 30px;
+      margin-left: 15px;
   }
   .locale-selector {
     display: none !important;
@@ -71,7 +74,7 @@
     .wrapper {
       padding: 50px 30px;
     }
-    
+
     .locale-selector {
       display: block !important;
     }
