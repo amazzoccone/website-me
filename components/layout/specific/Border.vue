@@ -1,5 +1,7 @@
 <template>
-  <div v-for="n in count" :key="n" :class="borderClass(n, 'left')" :style="borderStyle"></div>
+  <div>
+    <div v-for="n in count" :key="n" :class="borderClass(n, 'left')" :style="borderStyle"></div>
+  </div>
 </template>
 
 <script>
@@ -17,16 +19,15 @@
     computed: {
       borderStyle() {
         return {
-          height: 100/this.params.pages + 'vh'
+          height: 100/this.count + 'vh'
         }
       },
     },
     methods: {
       borderClass(n, position) {
         return {
-          ['row border border-'+position]: true,
-          [this.color]: true,
-          active: n === this.params.page
+          ['border border-'+position]: true,
+          active: n === this.active
         }
       },
     }
@@ -34,29 +35,28 @@
 </script>
 
 <style>
+  @import '~/assets/css/variables.css';
+
+  .border-left {
+    border-left: var(--border-default-width) solid;
+  }
+  .border-right {
+    border-right: var(--border-default-width) solid;
+  }
   .border {
     margin: 0;
     width: 100%;
-  }
-  .border-left {
-    border-left: 2px solid #000;
-  }
-  .border-right {
-    border-right: 2px solid #000;
+    border-color: color(var(--color) a(var(--border-default-opacity)));
   }
 
-  /* Color White */
-  .border.white {
-    border-color: rgba(255, 255, 255, 0.4);
+  .border-left.active {
+    border-left: var(--border-active-width) solid;
   }
-  .border.white.active {
-    border-color: rgba(255, 255, 255, 0.8);
+  .border-right.active {
+    border-right: var(--border-active-width) solid;
   }
-  /* Color Black */
-  .border.black {
-    border-color: rgba(0, 0, 0, 0.4);
-  }
-  .border.black.active {
-    border-color: rgba(0, 0, 0, 0.8);
+
+  .border.active {
+    border-color: color(white a(var(--border-active-opacity)));
   }
 </style>

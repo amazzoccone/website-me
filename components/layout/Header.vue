@@ -1,13 +1,13 @@
 <template>
   <div class="clearfix wrapper">
-    <logo :color="color" class="float-left header-space"/>
-    <author :color="color" class="author float-left header-space"/>
+    <logo class="float-left header-space"/>
+    <author class="author float-left header-space"/>
 
     <page-label v-if="showLabel" position="top" :text="labelText"/>
 
-    <language-selector v-if="showLocaleSelector" :color="color" class="float-right header-space locale-selector"/>
+    <language-selector v-if="showLocaleSelector" class="float-right header-space locale-selector"/>
     <div class="float-right menu-icon">
-      <menu-icon :color="color"/>
+      <menu-icon/>
     </div>
   </div>
 </template>
@@ -38,9 +38,6 @@
       labelText() {
         return _.get(this.params, 'label.text');
       },
-      color() {
-        return _.get(this.params, 'color');
-      }
     },
     components: {
       Author,

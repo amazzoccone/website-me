@@ -3,14 +3,15 @@
     <div v-if="positionIsRight" class="full-height column column-border">
       <border :active="this.params.page" :count="params.pages"/>
     </div>
+
     <div class="column">
       <div class="row full-height">
-        <div :class="titleClass">
-          <div v-if="params.closeBtn" class="close-btn" @click="close">x</div>
-          <div v-if="!params.closeBtn" :class="['title', 'rotate-90']">{{ params.text }}</div>
+        <div class="content">
+          <div v-if="!params.closeBtn" class="title rotate-90">{{ params.text }}</div>
         </div>
       </div>
     </div>
+
     <div v-if="positionIsLeft" class="full-height column column-border">
         <border :active="this.params.page" :count="params.pages"/>
     </div>
@@ -18,12 +19,9 @@
 </template>
 
 <script>
-  import ConfigMixin from './ConfigMixin.vue';
   import Border from './specific/Border.vue';
 
   export default {
-    mixins: [ConfigMixin],
-
     props: {
       params: {
         type: Object,
@@ -48,13 +46,6 @@
       positionIsRight() {
         return this.params.position === 'right';
       },
-      titleClass() {
-        return {
-          'content': true,
-          [this.params.position]: true,
-          [this.color]: true
-        }
-      }
     },
     methods: {
       clickHandler(e) {
@@ -71,12 +62,7 @@
 </script>
 
 <style scoped>
-  .full-height {
-    height: 100vh;
-  }
-  .pointer {
-    cursor: pointer;
-  }
+  @import '~/assets/css/variables.css';
 
   .content {
     display: flex;
@@ -84,12 +70,8 @@
     align-items: center;
     align-content: center;
     flex-direction: column;
-  }
-  .content.left {
-    margin-left: 70%;
-  }
-  .content.right {
-    margin-left: 20%;
+    margin-left: 50%;
+    color: var(--color);
   }
 
   .content > .title {
@@ -104,17 +86,9 @@
     align-self: flex-start;
   }
 
-  /* Color White */
-  .content.white {
-    color: #FFF;
-  }
-  /* Color Black */
-  .content.black {
-    color: #000;
-  }
-
   .column-border {
       padding: 0;
+      width: auto;
   }
 
   .rotate-90 {

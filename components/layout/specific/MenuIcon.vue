@@ -7,11 +7,7 @@
 </template>
 
 <script>
-  import ConfigMixin from '../ConfigMixin.vue';
-
   export default {
-    mixins: [ConfigMixin],
-
     computed: {
       classObj() {
         return {
@@ -29,6 +25,8 @@
 </script>
 
 <style scoped>
+  @import '~/assets/css/variables.css';
+
   .hamburger-icon {
     display: inline-block;
     cursor: pointer;
@@ -39,12 +37,8 @@
     margin: 5px 0;
   }
 
-  /* Colors */
-  .hamburger-icon.white > div {
-    background-color: #EEE;
-  }
-  .hamburger-icon.black > div{
-    background-color: #111;
+  .hamburger-icon > div {
+    background-color: var(--color);
   }
 
 </style>

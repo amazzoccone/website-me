@@ -15,7 +15,7 @@
         </div>
 
         <div class="row">
-          <footer-content width="88%" :params="footer" />
+          <footer-content :params="footer" />
         </div>
       </div>
 
@@ -66,16 +66,21 @@
       FooterContent,
       HeaderContent,
       Sidebar
+    },
+    mounted() {
+      var html = document.getElementsByTagName('html')[0];
+      html.style.setProperty("--color", this.general.color);
     }
   }
 </script>
 
 <style>
+  @import '~/assets/css/variables.css';
+
   /* Mobile First Media Queries */
 
   /* Base style */
   html {
-    font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     font-size: 16px;
     word-spacing: 1px;
     -ms-text-size-adjust: 100%;
@@ -106,26 +111,19 @@
     display: none !important;
   }
 
-  /* Larger than mobile screen */
-  @media (min-width: 40.0rem) {
+  @media (--small) {
     .layout-content {
       -webkit-box-flex: 0 !important;
-      -ms-flex: 0 0 88% !important;
-      flex: 0 0 88% !important;
-      max-width: 88% !important;
+      -ms-flex: 0 0 var(--layout-content-width) !important;
+      flex: 0 0 var(--layout-content-width) !important;
+      max-width: var(--layout-content-width) !important;
     }
     .layout-sidebar {
       display: block !important;
       -webkit-box-flex: 0 !important;
-      -ms-flex: 0 0 6% !important;
-      flex: 0 0 6% !important;
-      max-width: 6% !important;
+      -ms-flex: 0 0 var(--layout-sidebar-width) !important;
+      flex: 0 0 var(--layout-sidebar-width) !important;
+      max-width: var(--layout-sidebar-width) !important;
     }
   }
-
-  /* Larger than tablet screen */
-  @media (min-width: 80.0rem) { }
-
-  /* Larger than desktop screen */
-  @media (min-width: 120.0rem) { }
 </style>
