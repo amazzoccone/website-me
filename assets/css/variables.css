@@ -1,0 +1,32 @@
+:root {
+  /* General */
+  --color: white;
+  --background-color: white;
+
+  --font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+
+  /* Layout grid */
+  --layout-content-size: 88;
+  --layout-content-width: calc(var(--layout-content-size) * 1%);
+
+  --layout-sidebar-width: calc((100 - var(--layout-content-size))/2 * 1%);
+
+  --layout-footer-width: var(--layout-content-width);
+  --layout-footer-left: var(--layout-sidebar-width);
+
+
+  /* Sidebar border */
+  --border-default-opacity: 0.5;
+  --border-default-width: 3px;
+
+  --border-active-opacity: 0.9;
+  --border-active-width: 3px;
+}
+
+
+/* Larger than mobile screen */
+@custom-media --small (min-width: 40.0rem);
+/* Larger than tablet screen */
+@custom-media --medium (min-width: 80.0rem);
+/* Larger than desktop screen */
+@custom-media --large (min-width: 120.0rem);
