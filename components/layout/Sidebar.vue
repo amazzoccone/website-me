@@ -1,20 +1,17 @@
 <template>
   <div class="row pointer" @click="clickHandler">
-    <div v-if="positionIsRight" class="full-height column column-border">
-      <border :active="this.params.page" :count="params.pages"/>
-    </div>
+    <border v-if="positionIsRight" :active="this.params.page" :count="params.pages"/>
+
 
     <div class="column">
       <div class="row full-height">
-        <div class="content">
+        <div class="content" :style="cssProps">
           <div v-if="!params.closeBtn" class="title rotate-90">{{ params.text }}</div>
         </div>
       </div>
     </div>
 
-    <div v-if="positionIsLeft" class="full-height column column-border">
-        <border :active="this.params.page" :count="params.pages"/>
-    </div>
+    <border v-if="positionIsLeft" :active="this.params.page" :count="params.pages"/>
   </div>
 </template>
 
@@ -46,6 +43,11 @@
       positionIsRight() {
         return this.params.position === 'right';
       },
+      cssProps() {
+        return {
+          color: 'var(--color)'
+        };
+      }
     },
     methods: {
       clickHandler(e) {
@@ -61,9 +63,7 @@
   }
 </script>
 
-<style scoped>
-  @import '~/assets/css/variables.css';
-
+<style>
   .content {
     display: flex;
     justify-content: center;
@@ -71,7 +71,6 @@
     align-content: center;
     flex-direction: column;
     margin-left: 50%;
-    color: var(--color);
   }
 
   .content > .title {
@@ -81,14 +80,6 @@
     top: 50%;
     font-size: 1.1rem;
     letter-spacing: 1px;
-  }
-  .content > .close-btn {
-    align-self: flex-start;
-  }
-
-  .column-border {
-      padding: 0;
-      width: auto;
   }
 
   .rotate-90 {

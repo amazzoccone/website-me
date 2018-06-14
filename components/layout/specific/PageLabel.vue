@@ -8,7 +8,7 @@
         <span class="text center">{{ text }}</span>
       </div>
       <div class="row">
-        <div v-if="isBottom" class="center line"></div>
+        <div v-if="isBottom" class="center line border-color"></div>
       </div>
     </div>
   </div>
@@ -41,15 +41,6 @@
 </script>
 
 <style scoped>
-  @import '~/assets/css/variables.css';
-
-  :root {
-    --line-height: 100px;
-  }
-
-  /* Mobile First Media Queries */
-
-  /* Base style */
   .wrapper {
     position:relative;
     text-align:center;
@@ -68,8 +59,9 @@
   }
 
   .line {
-    height: 100px;
+    height: var(--page-label-height);
     width: 5px;
-    border: 2px solid var(--color);
+    border-width: 2px;
+    border-style: solid;
   }
 </style>

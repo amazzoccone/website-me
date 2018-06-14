@@ -1,3 +1,5 @@
+/* ------ CSS variables ------ */
+
 :root {
   /* General */
   --color: white;
@@ -17,10 +19,13 @@
 
   /* Sidebar border */
   --border-default-opacity: 0.5;
-  --border-default-width: 3px;
+  --border-default-width: 1px;
 
   --border-active-opacity: 0.9;
   --border-active-width: 3px;
+
+  /* Page label */
+  --page-label-height: 100px;
 }
 
 

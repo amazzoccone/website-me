@@ -68,8 +68,7 @@
       Sidebar
     },
     mounted() {
-      var html = document.getElementsByTagName('html')[0];
-      html.style.setProperty("--color", this.general.color);
+      document.documentElement.style.setProperty('--color', this.general.color);
     }
   }
 </script>
@@ -92,7 +91,6 @@
 
   body {
     margin: 0px;
-    color: #FFF;
   }
 
   .container-fullpage {

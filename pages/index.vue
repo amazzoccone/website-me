@@ -1,5 +1,5 @@
 <template>
-  <div ref="content" class="content">
+  <div ref="content" class="content" :style="cssProps">
     <div class="row">
       <div class="works works-desktop">
         <works-ref key="wr-top" :page="page"/>
@@ -68,6 +68,11 @@
     computed: {
       page() {
         return this.$store.state.layout.general.page;
+      },
+      cssProps() {
+        return {
+          color: 'var(--color)'
+        }
       }
     },
     components: {
@@ -77,9 +82,6 @@
 </script>
 
 <style scoped>
-  /* Mobile First Media Queries *//* Mobil
-
-  /* Base style */
   .content {
     margin: 0 auto;
     margin-top: 10vh;
