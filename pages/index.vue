@@ -18,10 +18,11 @@
 
 <script>
   import WorksRef from '~/components/WorksRef.vue';
+  import images from '~/assets/js/images.js';
 
   export default {
     fetch ({ store, app }) {
-      let images = ['/IMG_0546.JPG', 'IMG_0529.JPG', 'IMG_0529.JPG'];
+      let images = images.get();
       let pages = images.length;
 
       store.commit('layout', {

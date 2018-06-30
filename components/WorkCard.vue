@@ -8,11 +8,11 @@
       </div>
       <div class="work-info">
         <div class="work-title">
-          {{ $t(`works.${name}.title`) }}
+          {{ title }}
         </div>
         <div class="work-subtitle">
-          <p class="technique">{{ $t(`works.${name}.technique`) }}</p>
-          <p class="dimension">{{ $t(`works.${name}.dimension`) }}</p>
+          <p class="technique">{{ technique }}</p>
+          <p class="dimension">{{ dimension }}</p>
         </div>
       </div>
     </div>
@@ -21,7 +21,15 @@
 <script>
   export default {
     props: {
-      name: {
+      title: {
+        type: String,
+        required: true
+      },
+      technique: {
+        type: String,
+        required: true
+      },
+      dimension: {
         type: String,
         required: true
       },
