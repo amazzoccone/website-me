@@ -19,7 +19,7 @@
       </template>
 
       <template v-if="contactIsActive || followIsActive">
-        <div class="column column-80">
+        <div class="column">
           <div class="row">
             <template v-if="contactIsActive">
               <div class="column">
@@ -46,7 +46,7 @@
             </template>
           </div>
         </div>
-        <div class="column column-20">
+        <div class="column column-close">
           <div class="row">
             <button class="button close" @click="close">&times;</button>
           </div>
@@ -96,6 +96,10 @@ export default {
       max-width: 43% !important;
   }
 
+  .column-close {
+    width: 55px;
+  }
+
   .button {
     width: 100%;
     background-color: #FFF;
@@ -125,8 +129,8 @@ export default {
 
   .button.close {
     font-size: 2.2rem;
-    padding: 0 1.5rem;
     color: #777;
+    padding: 0px;
     padding-bottom: 5px;
     line-height: 1;
   }
