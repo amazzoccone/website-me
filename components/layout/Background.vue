@@ -42,7 +42,10 @@
     methods: {
       styleObj(image) {
         return {
-          background: `url(${image}) no-repeat center center fixed`
+          'background-image': `url(${image})`,
+          'background-repeat': 'no-repeat',
+          'background-position': 'center',
+          'background-size': 'cover',
         };
       },
       classObj(key) {
@@ -57,7 +60,7 @@
 
 <style scoped>
   @import '~/assets/css/variables.css';
-  
+
   .hidden {
     display: none;
   }
