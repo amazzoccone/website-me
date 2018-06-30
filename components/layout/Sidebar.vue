@@ -78,7 +78,7 @@
     display:block;
     position: absolute;
     top: 50%;
-    font-size: 1.1rem;
+    font-size: 1rem;
     letter-spacing: 1px;
   }
 
