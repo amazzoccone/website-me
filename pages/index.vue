@@ -22,8 +22,8 @@
 
   export default {
     fetch ({ store, app }) {
-      let images = images.get();
-      let pages = images.length;
+      let backgroundImages = images.get();
+      let pages = backgroundImages.length;
 
       store.commit('layout', {
         general: {
@@ -31,7 +31,7 @@
           page: 1
         },
         background: {
-          images: images,
+          images: backgroundImages,
           color: 'white'
         },
         sidebarLeft: {

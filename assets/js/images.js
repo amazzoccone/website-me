@@ -4,9 +4,9 @@ export default {
   },
   get() {
     return [
-      find('miedo'),
-      find('relaciones'),
-      find('asfixia')
+      this.find('miedo'),
+      this.find('relaciones'),
+      this.find('asfixia')
     ]
   }
 }
