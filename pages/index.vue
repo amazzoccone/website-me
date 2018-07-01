@@ -59,10 +59,10 @@
 
       this.$bus.$on('sidebar:clicked', (params) => {
         if (params.position == 'left') {
-          this.$router.push('/about');
+          // this.showAboutModal();
         }
         else if (params.position == 'right') {
-          this.$router.push('/works');
+          this.$router.push(this.localePath('works'));
         }
       });
     },
