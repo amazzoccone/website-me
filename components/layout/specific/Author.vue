@@ -1,8 +1,10 @@
 <template>
-  <div :style="cssProps">
-    <p class="name">{{ $t('author.name') }}</p>
-    <p class="skill">{{ $t('author.skill') }}</p>
-  </div>
+  <nuxt-link to="/">
+    <div :style="cssProps">
+      <p class="name">{{ $t('author.name') }}</p>
+      <p class="skill">{{ $t('author.skill') }}</p>
+    </div>
+  </nuxt-link>
 </template>
 
 <script>
