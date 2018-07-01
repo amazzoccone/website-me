@@ -62,6 +62,7 @@
           // this.showAboutModal();
         }
         else if (params.position == 'right') {
+          //TODO: Fix this! Cause an error when iterates route 
           this.$router.push(this.localePath('works'));
         }
       });

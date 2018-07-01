@@ -22,22 +22,12 @@
     },
     data() {
       return {
-          activeImage: 0
+          activeImage: 0,
+          interval: null
       }
     },
     mounted() {
-      if (this.images.length > 0) {
-        setInterval(() => {
-          if (this.activeImage < this.images.length-1) {
-            this.activeImage++;
-          }
-          else {
-            this.activeImage = 0;
-          }
-
-          this.$bus.$emit('background:change', this.activeImage + 1);
-        }, this.duration);
-      }
+      this.setInterval();
     },
     methods: {
       styleObj(image) {
@@ -54,6 +44,38 @@
           'hidden': this.activeImage !== key
         };
       },
+      setInterval() {
+        this.interval = setInterval(() => {
+          if (this.activeImage < this.counfOfImages - 1) {
+            this.activeImage++;
+          }
+          else {
+            this.activeImage = 0;
+          }
+
+          this.$bus.$emit('background:change', this.activeImage + 1);
+        }, this.duration);
+      },
+      clearInterval() {
+        clearInterval(this.interval);
+      }
+    },
+    computed: {
+      counfOfImages() {
+        return this.images.length;
+      }
+    },
+    watch: {
+      counfOfImages(newVal, oldVal) {
+        if (newVal == 0) {
+          this.clearInterval()
+        }
+        else if (newVal > 0) {
+          this.setInterval();
+        }
+
+        return newVal;
+      }
     }
   }
 </script>

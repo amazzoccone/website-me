@@ -1,9 +1,7 @@
 <template>
-  <nuxt-link :to="localePath('index')">
-    <div :style="cssProps">
+  <nuxt-link :to="localePath('index')" :style="cssProps">
       <p class="name">{{ $t('author.name') }}</p>
       <p class="skill">{{ $t('author.skill') }}</p>
-    </div>
   </nuxt-link>
 </template>
 

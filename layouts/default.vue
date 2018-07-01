@@ -59,6 +59,24 @@
       sidebarRight() {
         let params = _.clone(this.general);
         return _.merge(params, { position: 'right' }, _.get(this.config, 'sidebarRight', {}));
+      },
+      color() {
+        return this.general.color;
+      }
+    },
+    methods: {
+      setCssVariable(name, value) {
+        document.documentElement.style.setProperty(name, value);
+      }
+    },
+    mounted() {
+      this.setCssVariable('--color', this.color);
+    },
+    watch: {
+      color(newVal, oldVal) {
+        this.setCssVariable('--color', newVal);
+
+        return newVal;
       }
     },
     components: {
@@ -66,9 +84,6 @@
       FooterContent,
       HeaderContent,
       Sidebar
-    },
-    mounted() {
-      document.documentElement.style.setProperty('--color', this.general.color);
     }
   }
 </script>

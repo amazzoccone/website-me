@@ -1,6 +1,6 @@
 <template>
   <div class="logo">
-    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+    <svg :style="cssProps" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
     	 :width="size" :height="size" viewBox="0 0 17 17" enable-background="new 0 0 17 17" xml:space="preserve">
       <g>
       	<path d="M10.795,14.134v1.173l-4.591-1.803v-0.852l4.591-1.793v1.158l0,0l-2.933,1.058L10.795,14.134z"/>
@@ -17,17 +17,19 @@
       return {
         size: '42px'
       }
+    },
+    computed: {
+      cssProps() {
+        return {
+          fill: 'var(--color)'
+        }
+      }
     }
   }
 </script>
 
 <style>
-  @import '~/assets/css/variables.css';
-  
   .logo {
     margin-left: -10px;
-  }
-  svg {
-    fill: var(--color);
   }
 </style>
