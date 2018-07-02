@@ -1,13 +1,13 @@
 export default {
-  find(name, app) {
+  find(name, app = null) {
     return {
-      title: app.$t(`works.${name}.title`),
-      technique: app.$t(`works.${name}.technique`),
-      dimension: app.$t(`works.${name}.dimension`),
+      title: app ? app.i18n.t(`works.${name}.title`) : '-',
+      technique: app ? app.i18n.t(`works.${name}.technique`) : '-',
+      dimension: app ? app.i18n.t(`works.${name}.dimension`) : '-',
       image: `/${name}.jpg`
     }
   },
-  get(app) {
+  get(app = null) {
     return [
       this.find('dilema', app),
       this.find('asfixia', app),
@@ -16,5 +16,8 @@ export default {
       this.find('relaciones', app),
       this.find('relaciones', app)
     ]
+  },
+  count() {
+    return this.get().length;
   }
 }

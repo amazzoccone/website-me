@@ -26,6 +26,10 @@
 
   /* Page label */
   --page-label-height: 100px;
+
+  /* Work Grid */
+  --work-grid-grap: 40px;
+  --work-grid-card-height: 220px;
 }
 
 

@@ -11,6 +11,10 @@ const createStore = () => {
       },
       setLayoutPage(state, page) {
         state.layout.general.page = page;
+      },
+      setLayoutPages(state, pages) {
+        state.layout.sidebarLeft.pages = pages;
+        state.layout.sidebarRight.pages = pages;
       }
     }
   })
