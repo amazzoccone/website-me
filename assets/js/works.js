@@ -14,6 +14,11 @@ export default {
       this.find('miedo', translate),
       this.find('relaciones', translate),
       this.find('relaciones', translate),
+      this.find('dilema', translate),
+      this.find('asfixia', translate),
+      this.find('miedo', translate),
+      this.find('relaciones', translate),
+      this.find('miedo', translate),
       this.find('relaciones', translate)
     ]
   },

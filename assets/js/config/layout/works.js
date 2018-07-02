@@ -10,11 +10,9 @@ export default {
       },
       sidebarLeft: {
         text: app.i18n.t('links.about'),
-        pages: 1,
       },
       sidebarRight: {
         text: app.i18n.t('links.works'),
-        pages: 1,
       },
       header: {
         author: true,

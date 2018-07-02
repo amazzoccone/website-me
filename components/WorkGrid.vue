@@ -1,6 +1,6 @@
 <template>
   <div class="grid">
-    <work-card v-for="(work, key) in data" :key="key"
+    <work-card v-for="(work, key) in dataForCurrentPage" :key="key"
       :title="work.title"
       :technique="work.technique"
       :dimension="work.dimension"
@@ -21,7 +21,7 @@
     },
     computed: {
       perPage() {
-        return 9;
+        return 6;
       },
       total() {
         return this.data ? this.data.length : 0;
@@ -31,6 +31,12 @@
       },
       data() {
         return this.$store.state.works;
+      },
+      dataForCurrentPage() {
+        let start = (this.page-1) * this.perPage;
+        let end = start + this.perPage;
+
+        return this.data.slice(start, end);
       }
     },
     mounted() {
@@ -38,6 +44,11 @@
     },
     watch:{
       data(newVal, oldVal) {
+        this.loaded();
+      }
+    },
+    methods: {
+      loaded() {
         this.$bus.$emit('work-grid:loaded', {
           data: this.data,
           pages: this.pages,
