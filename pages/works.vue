@@ -1,89 +1,38 @@
 <template>
-  <div class="content grid">
-    <work-card v-for="(work, key) in works" :key="key"
-      :title="work.title"
-      :technique="work.technique"
-      :dimension="work.dimension"
-      :image="work.image"
-    />
+  <div class="content">
+    <work-grid/>
   </div>
 </template>
 
 <script>
-  import WorkCard from '~/components/WorkCard.vue';
-  import works from '~/assets/js/works.js';
+  import WorkGrid from '~/components/WorkGrid.vue';
+  import layoutConfig from '~/assets/js/config/layout/works.js';
 
   export default {
-    data() {
-      return {
-        page: 1,
-        cardsPerRow: 3,
-        works: works.get(this)
-      }
-    },
     fetch ({ store, app }) {
-      let pages = 3;
-
-      store.commit('layout', {
-        general: {
-          color: 'black',
-          page: 1
-        },
-        background: {
-          color: 'white'
-        },
-        sidebarLeft: {
-          text: app.i18n.t('links.about'),
-          pages: pages,
-        },
-        sidebarRight: {
-          text: app.i18n.t('links.works'),
-          pages: pages,
-        },
-        header: {
-          author: true,
-          languageSelector: false,
-          logo: {},
-        },
-        footer: {
-          social: false,
-          label: {
-            text: 'scroll'
-          }
-        }
-      })
+      store.commit('layout', layoutConfig.get(app))
     },
     created() {
       this.$bus.$on('sidebar:clicked', (params) => {
         if (params.position == 'left') {
-          this.$router.push('/about');
+          // this.showAboutModal();
         }
         else if (params.position == 'right') {
-          this.$router.push('/');
+          this.$router.push(this.localePath('index'));
         }
       });
 
-      // this.$bus.$on('scroll:up', (page) => {
-      //   this.$store.commit('incrementLayoutPage', page);
-      // });
-      //
-      // this.$bus.$on('scroll:down', (page) => {
-      //   this.$store.commit('decrementLayoutPage', page);
-      // });
-    },
-    computed: {
-      totalPages() {
-        return 3;
-      }
-    },
-    methods: {
-      work(row, column) {
-        let key = ((row+1)*this.cardsPerRow) + column + 1;
-        return this.works[key];
-      }
+      this.$bus.$on('work-grid:loaded', (params) => {
+        this.$store.commit('setLayoutPage', params.page);
+        this.$store.commit('setLayoutPages', params.pages);
+      });
+
+      this.$bus.$on('work-grid:page-changed', (page) => {
+        this.$store.commit('setLayoutPage', page);
+      });
     },
     components: {
-      WorkCard
+      WorkGrid
     }
   }
 </script>
@@ -97,12 +46,6 @@
     width: 70%;
   }
 
-  .grid {
-    display: grid;
-    grid-template-rows: 220px 220px;
-    grid-auto-flow: column;
-    grid-gap: 40px;
-  }
 
   /* Larger than mobile screen */
   @media (min-width: 40.0rem) { }
