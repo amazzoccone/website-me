@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <work-grid/>
+    <work-grid />
   </div>
 </template>
 
@@ -18,7 +18,7 @@
           // this.showAboutModal();
         }
         else if (params.position == 'right') {
-          this.$router.push(this.localePath('index'));
+          this.$router.push(this.localePath('works'));
         }
       });
 

@@ -27,7 +27,9 @@
       }
     },
     mounted() {
-      this.setInterval();
+      if (this.countOfImages > 0) {
+        this.setInterval();
+      }
     },
     methods: {
       styleObj(image) {
@@ -58,6 +60,7 @@
       },
       clearInterval() {
         clearInterval(this.interval);
+        this.interval = null;
       }
     },
     computed: {

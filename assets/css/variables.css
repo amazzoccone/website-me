@@ -29,6 +29,7 @@
 
   /* Work Grid */
   --work-grid-grap: 40px;
+  --work-grid-rows: 2;
   --work-grid-card-height: 220px;
 }
 

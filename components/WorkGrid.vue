@@ -33,18 +33,19 @@
         return this.$store.state.works;
       }
     },
-    fetch ({ store, app }) {
-      let works = works.get(app)
-      store.commit('works', works);
+    mounted() {
+      this.$store.commit('works', works.get(this.$t));
     },
-    created() {
-      this.$bus.$emit('work-grid:loaded', {
-        data: this.data,
-        pages: this.pages,
-        page: this.page,
-        perPage: this.perPage,
-        total: this.total,
-      });
+    watch:{
+      data(newVal, oldVal) {
+        this.$bus.$emit('work-grid:loaded', {
+          data: this.data,
+          pages: this.pages,
+          page: this.page,
+          perPage: this.perPage,
+          total: this.total,
+        });
+      }
     },
     components: {
       WorkCard
@@ -60,7 +61,7 @@
   /* Base style */
   .grid {
     display: grid;
-    grid-template-rows: repeat(2, var(--work-grid-card-height));
+    grid-template-rows: repeat(var(--work-grid-rows), var(--work-grid-card-height));
     grid-auto-flow: column;
     grid-gap: var(--work-grid-grap);
   }

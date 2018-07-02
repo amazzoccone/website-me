@@ -3,7 +3,8 @@ import Vuex from 'vuex'
 const createStore = () => {
   return new Vuex.Store({
     state: {
-      layout: {}
+      layout: {},
+      works: []
     },
     mutations: {
       layout (state, config) {
@@ -15,7 +16,11 @@ const createStore = () => {
       setLayoutPages(state, pages) {
         state.layout.sidebarLeft.pages = pages;
         state.layout.sidebarRight.pages = pages;
-      }
+      },
+
+      works (state, data) {
+        state.works = data;
+      },
     }
   })
 }

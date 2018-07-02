@@ -1,20 +1,20 @@
 export default {
-  find(name, app = null) {
+  find(name, translate = null) {
     return {
-      title: app ? app.i18n.t(`works.${name}.title`) : '-',
-      technique: app ? app.i18n.t(`works.${name}.technique`) : '-',
-      dimension: app ? app.i18n.t(`works.${name}.dimension`) : '-',
+      title: translate ? translate(`works.${name}.title`) : '-',
+      technique: translate ? translate(`works.${name}.technique`) : '-',
+      dimension: translate ? translate(`works.${name}.dimension`) : '-',
       image: `/${name}.jpg`
     }
   },
-  get(app = null) {
+  get(translate = null) {
     return [
-      this.find('dilema', app),
-      this.find('asfixia', app),
-      this.find('miedo', app),
-      this.find('relaciones', app),
-      this.find('relaciones', app),
-      this.find('relaciones', app)
+      this.find('dilema', translate),
+      this.find('asfixia', translate),
+      this.find('miedo', translate),
+      this.find('relaciones', translate),
+      this.find('relaciones', translate),
+      this.find('relaciones', translate)
     ]
   },
   count() {
