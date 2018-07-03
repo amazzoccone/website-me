@@ -75,6 +75,7 @@
     grid-template-rows: repeat(var(--work-grid-rows), var(--work-grid-card-height));
     grid-auto-flow: column;
     grid-gap: var(--work-grid-grap);
+    grid-auto-columns: 1fr;
   }
 
   /* Larger than mobile screen */

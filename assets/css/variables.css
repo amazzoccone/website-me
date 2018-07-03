@@ -31,7 +31,11 @@
   /* Work Grid */
   --work-grid-grap: 40px;
   --work-grid-rows: 2;
-  --work-grid-card-height: 220px;
+  --work-grid-card-height: 200px;
+
+  /* Work Card */
+  --work-card-height: 170px;
+  --work-card-overlay-background: rgba(255, 255, 255, 0.6);
 }
 
 

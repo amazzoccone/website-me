@@ -42,10 +42,12 @@
 </script>
 
 <style scoped>
+  @import '~/assets/css/variables.css';
+
   .work-image {
     position: relative;
     width: 100%;
-    height: 170px;
+    height: var(--work-card-height);
   }
 
   .overlay {
@@ -53,12 +55,12 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: var(--work-card-overlay-background);
     overflow: hidden;
     text-align: center;
     width: 0;
     height: 100%;
-    line-height: 170px;
+    line-height: var(--work-card-height);
     transition: .5s ease;
   }
   .overlay > div {
@@ -84,7 +86,6 @@
 
   .work-info {
     font-size: 0.8rem;
-    color: var(--color);
     margin-top: 15px;
   }
   .work-info > div {
