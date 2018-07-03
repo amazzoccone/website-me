@@ -86,7 +86,7 @@
 
   .work-info {
     font-size: 0.8rem;
-    margin-top: 15px;
+    margin-top: 12px;
   }
   .work-info > div {
     display: inline-block;

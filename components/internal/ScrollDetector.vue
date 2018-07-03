@@ -1,57 +1,64 @@
 <template>
-  <div ref="scroll-content">
+  <div id="scroll-detector">
+    <slot></slot>
   </div>
 </template>
 
 <script>
   export default {
     props: {
-      return {
-        settings: {
-          type: Object,
-          default: {}
-        }
+      settings: {
+        type: Object,
+        default: () => { return {}; }
       }
-    }
+    },
+    computed: {
+      tolerance() {
+        return this.settings.tolerance || 1;
+      },
+      timeout() {
+        return this.settings.tolerance || 40;
+      },
+      element() {
+        return document.getElementById("scroll-detector");
+      }
+    },
     mounted() {
-      this.getElement().addEventListener('scroll', this.handleScroll);
+      // IE9, Chrome, Safari, Opera
+    	this.element.addEventListener("mousewheel", this.debouncer(e => {
+          this.handleScroll(e);
+      }));
+    	// Firefox
+    	this.element.addEventListener("DOMMouseScroll", this.debouncer(e => {
+          this.handleScroll(e);
+      }));
+    },
+    beforeDestroy() {
+      window.removeEventListener('scroll', this.handleScroll);
     },
     methods: {
       handleScroll(e) {
-        let speed = scrollSpeed();
-        console.log(speed);
+        //Call your scroll handler here.
+        let speed = e.deltaY;
 
-        if (speed > this.tolerance) {
-          //TODO: Emit down event
+        if (speed >= this.tolerance) {
+          this.$emit('scroll:up', speed);
         }
-        if (speed < -this.tolerance) {
-          //TODO: Emit up event
+        else if (speed <= -this.tolerance) {
+          this.$emit('scroll:down', speed);
         }
-      }
-      scrollSpeed() {
-        var lastPos, newPos, timer, delta,
-            delay = this.settings.delay || 50; // in "ms" (higher means lower fidelity )
-
-        function clear() {
-          lastPos = null;
-          delta = 0;
-        }
-        clear();
-
-        return function() {
-          newPos = this.getElement().scrollY;
-          if ( lastPos != null ){ // && newPos < maxScroll
-            delta = newPos -  lastPos;
-          }
-          lastPos = newPos;
-          clearTimeout(timer);
-          timer = setTimeout(clear, delay);
-          return delta;
+      },
+      //Debouncer functions add a delay between an event and a reaction, so scaling and scrolling don't evoke a function dozens of times.
+      debouncer(func, timeout) {
+        var timeoutID , timeout = this.timeout;
+        return function () {
+          var scope = this , args = arguments;
+          clearTimeout( timeoutID );
+          timeoutID = setTimeout( function () {
+            func.apply( scope , Array.prototype.slice.call( args ) );
+        } , timeout );
         };
       }
-      getElement() {
-        return this.$refs['scroll-content'];
-      }
-    }
+    },
   }
 </script>
