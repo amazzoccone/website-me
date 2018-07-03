@@ -1,4 +1,5 @@
 import Vuex from 'vuex'
+import Vue from 'vue'
 
 const createStore = () => {
   return new Vuex.Store({
@@ -11,11 +12,11 @@ const createStore = () => {
         state.layout = config;
       },
       setLayoutPage(state, page) {
-        state.layout.general.page = page;
+        Vue.set(state.layout.general, 'page', page);
       },
       setLayoutPages(state, pages) {
-        state.layout.sidebarLeft.pages = pages;
-        state.layout.sidebarRight.pages = pages;
+        Vue.set(state.layout.sidebarLeft, 'pages', pages);
+        Vue.set(state.layout.sidebarRight, 'pages', pages);
       },
 
       works (state, data) {
