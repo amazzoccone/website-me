@@ -1,18 +1,17 @@
 <template>
-  <div :class="classObj" @click="clickHandler">
-    <div></div>
-    <div></div>
-    <div></div>
+  <div class="hamburger-icon" @click="clickHandler">
+    <div :style="styleObj"></div>
+    <div :style="styleObj"></div>
+    <div :style="styleObj"></div>
   </div>
 </template>
 
 <script>
   export default {
     computed: {
-      classObj() {
+      styleObj() {
         return {
-          'hamburger-icon': true,
-          [this.color]: true
+          'background-color': 'var(--color)'
         };
       }
     },
@@ -36,9 +35,4 @@
     height: 2px;
     margin: 5px 0;
   }
-
-  .hamburger-icon > div {
-    background-color: var(--color);
-  }
-
 </style>
