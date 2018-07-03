@@ -1,5 +1,5 @@
 <template>
-  <scroll-detector @scroll:up="scrollUpHandler" @scroll:down="scrollDownHandler">
+  <scroll-detector :disable="isMobile" @scroll:up="scrollUpHandler" @scroll:down="scrollDownHandler">
     <div class="grid">
       <work-card v-for="(work, key) in dataForCurrentPage" :key="key"
         :title="work.title"
@@ -17,6 +17,11 @@
   import works from '~/assets/js/works.js';
 
   export default {
+    data() {
+      return {
+        isMobile: false
+      }
+    },
     computed: {
       perPage() {
         return 6;
@@ -38,10 +43,11 @@
         let end = start + this.perPage;
 
         return this.data.slice(start, end);
-      }
+      },
     },
     mounted() {
       this.$store.commit('works', works.get(this.$t));
+      this.isMobile = window.outerWidth < 640;
     },
     watch:{
       data(newVal, oldVal) {
@@ -84,17 +90,21 @@
   /* Base style */
   .grid {
     display: grid;
-    grid-template-rows: repeat(var(--work-grid-rows), var(--work-grid-card-height));
-    grid-auto-flow: column;
+    grid-template-columns: repeat(1, 1fr);
     grid-gap: var(--work-grid-grap);
-    grid-auto-columns: 1fr;
   }
 
   /* Larger than mobile screen */
   @media (min-width: 40.0rem) { }
 
   /* Larger than tablet screen */
-  @media (min-width: 80.0rem) { }
+  @media (min-width: 80.0rem) {
+    .grid {
+      grid-template-rows: repeat(var(--work-grid-rows), var(--work-grid-card-height));
+      grid-auto-flow: column;
+      grid-auto-columns: 1fr;
+    }
+  }
 
   /* Larger than desktop screen */
   @media (min-width: 120.0rem) { }
