@@ -30,6 +30,12 @@ body {
   flex: 0 0 10%;
   max-width: 10%;
 }
+.row .column.column-45 {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 45%;
+  flex: 0 0 45%;
+  max-width: 45%;
+}
 
 .row .column.column-offset-45 {
   margin-left: 45%;
