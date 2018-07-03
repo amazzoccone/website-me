@@ -1,5 +1,4 @@
 <template>
-  <div class="column wrapper">
     <div class="row">
       <template v-if="!active">
         <div class="column">
@@ -53,7 +52,6 @@
         </div>
       </template>
     </div>
-  </div>
 </template>
 
 <script>

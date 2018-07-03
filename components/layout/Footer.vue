@@ -1,7 +1,14 @@
 <template>
   <div class="footer">
-    <page-label v-if="showLabel" position="bottom" :text="labelText"/>
-    <social-links v-if="params.social" class="float-right social"/>
+    <div class="row">
+      <div class="column column-10 column-offset-45">
+        <page-label v-if="showLabel" position="bottom" :text="labelText" class="float-left social"/>
+      </div>
+
+      <div v-if="params.social" class="column column-45" style="display: flex;">
+        <social-links class="bottom"/>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -49,6 +56,10 @@
 
   .social {
     display: none !important;
+  }
+
+  .bottom {
+    align-self: flex-end;
   }
 
   /* Larger than tablet screen */

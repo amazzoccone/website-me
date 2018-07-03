@@ -23,6 +23,18 @@ body {
 }
 
 
+/* Grid complementors */
+.row .column.column-10 {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 10%;
+  flex: 0 0 10%;
+  max-width: 10%;
+}
+
+.row .column.column-offset-45 {
+  margin-left: 45%;
+}
+
 /*
   IMPORTANT: VueJS limitation to make css variables reactive
   More info.: https://github.com/vuejs/vue/issues/7346

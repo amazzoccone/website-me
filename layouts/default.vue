@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fullpage">
+  <div class="container-fullpage" :style="cssBaseProps">
     <div class="row fullpage">
       <background-page :color="background.color" :images="background.images" />
 
@@ -14,9 +14,7 @@
           <nuxt/>
         </div>
 
-        <div class="row">
-          <footer-content :params="footer" />
-        </div>
+        <footer-content :params="footer" />
       </div>
 
       <div class="column layout-sidebar">
@@ -62,6 +60,11 @@
       },
       color() {
         return this.general.color;
+      },
+      cssBaseProps() {
+        return {
+          color: 'var(--color)'
+        }
       }
     },
     methods: {
@@ -94,20 +97,6 @@
   /* Mobile First Media Queries */
 
   /* Base style */
-  html {
-    font-size: 16px;
-    word-spacing: 1px;
-    -ms-text-size-adjust: 100%;
-    -webkit-text-size-adjust: 100%;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
-    box-sizing: border-box;
-  }
-
-  body {
-    margin: 0px;
-  }
-
   .container-fullpage {
     height: 100vh;
     margin: 0 auto;
