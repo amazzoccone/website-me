@@ -1,11 +1,11 @@
 <template>
   <div class="footer">
     <div class="row">
-      <div class="column column-10 column-offset-45">
-        <page-label v-if="showLabel" position="bottom" :text="labelText" class="float-left social"/>
+      <div class="column column-10 column-offset-45 page-label">
+        <page-label v-if="showLabel" position="bottom" :text="labelText"/>
       </div>
 
-      <div v-if="params.social" class="column column-45" style="display: flex;">
+      <div v-if="params.social" class="column column-45 social-links">
         <social-links class="bottom"/>
       </div>
     </div>
@@ -54,18 +54,30 @@
     width: var(--layout-footer-width);
   }
 
-  .social {
-    display: none !important;
+  .social-links {
+    display: none;
+  }
+  .page-label {
+    display:none;
   }
 
   .bottom {
     align-self: flex-end;
   }
 
+  /* Larger than mobile screen */
+  @media (min-width: 40.0rem) { }
+
   /* Larger than tablet screen */
   @media (min-width: 80.0rem) {
-    .social {
-      display: block !important;
+    .social-links {
+      display: flex;
+    }
+    .page-label {
+      display: block;
     }
   }
+
+  /* Larger than desktop screen */
+  @media (min-width: 120.0rem) {}
 </style>
