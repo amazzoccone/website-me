@@ -43,7 +43,7 @@
   /* Base style */
   .content {
     margin: 0 auto;
-    width: 70%;
+    width: 85%;
   }
 
 
@@ -51,7 +51,11 @@
   @media (min-width: 40.0rem) { }
 
   /* Larger than tablet screen */
-  @media (min-width: 80.0rem) { }
+  @media (min-width: 80.0rem) {
+    .content {
+      width: 70%;
+    }
+  }
 
   /* Larger than desktop screen */
   @media (min-width: 120.0rem) { }
