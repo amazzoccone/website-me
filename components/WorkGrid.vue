@@ -6,6 +6,7 @@
         :technique="work.technique"
         :dimension="work.dimension"
         :image="work.image"
+        :to="link(work)"
       />
     </div>
   </scroll-detector>
@@ -55,6 +56,9 @@
       }
     },
     methods: {
+      link(work) {
+        return `/works/${work.id}`;
+      },
       loaded() {
         this.$bus.$emit('work-grid:loaded', {
           data: this.data,
@@ -92,6 +96,7 @@
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     grid-gap: var(--work-grid-grap);
+    grid-template-rows: repeat(var(--work-grid-rows), var(--work-grid-card-height-xs));
   }
 
   /* Larger than mobile screen */

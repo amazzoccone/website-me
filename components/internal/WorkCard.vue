@@ -2,9 +2,11 @@
     <div>
       <div class="work-image">
         <img :src="this.image"/>
-        <div class="overlay">
-          <div class="more-icon">+</div>
-        </div>
+        <nuxt-link :to="this.to">
+          <div class="overlay">
+            <div class="more-icon">+</div>
+          </div>
+        </nuxt-link>
       </div>
       <div class="work-info">
         <div class="work-title">
@@ -36,8 +38,12 @@
       image: {
         type: String,
         required: true
+      },
+      to: {
+        type: String,
+        required: true
       }
-    }
+    },
   }
 </script>
 
@@ -47,20 +53,21 @@
   .work-image {
     position: relative;
     width: 100%;
-    height: var(--work-card-height);
+    height: 80%;
   }
 
   .overlay {
     position: absolute;
     bottom: 0;
     left: 0;
-    right: 0;
     background-color: var(--work-card-overlay-background);
     overflow: hidden;
     text-align: center;
     width: 0;
     height: 100%;
-    line-height: var(--work-card-height);
+    display:flex;
+    justify-content:center;
+    align-items:center;
     transition: .5s ease;
   }
   .overlay > div {
