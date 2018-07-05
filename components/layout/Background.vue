@@ -48,7 +48,7 @@
       },
       setInterval() {
         this.interval = setInterval(() => {
-          if (this.activeImage < this.counfOfImages - 1) {
+          if (this.activeImage < this.countOfImages - 1) {
             this.activeImage++;
           }
           else {
@@ -64,12 +64,13 @@
       }
     },
     computed: {
-      counfOfImages() {
+      countOfImages() {
         return this.images.length;
       }
     },
     watch: {
-      counfOfImages(newVal, oldVal) {
+      countOfImages(newVal, oldVal) {
+        console.log('c');
         if (newVal == 0) {
           this.clearInterval()
         }
