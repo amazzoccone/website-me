@@ -69,7 +69,7 @@
   /* Larger than tablet screen */
   @media (min-width: 80.0rem) {
     .wrapper {
-      padding: 50px 30px;
+      padding: 40px 30px;
     }
 
     .locale-selector {
