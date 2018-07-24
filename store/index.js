@@ -18,6 +18,12 @@ const createStore = () => {
         Vue.set(state.layout.sidebarLeft, 'pages', pages);
         Vue.set(state.layout.sidebarRight, 'pages', pages);
       },
+      setLayoutSidebarLeft(state, text) {
+        Vue.set(state.layout.sidebarLeft, 'text', text);
+      },
+      setLayoutSidebarRight(state, text) {
+        Vue.set(state.layout.sidebarRight, 'text', text);
+      },
 
       works (state, data) {
         state.works = data;
