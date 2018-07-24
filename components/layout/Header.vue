@@ -1,7 +1,7 @@
 <template>
   <div class="clearfix wrapper">
     <logo class="float-left header-space"/>
-    <author class="author float-left header-space"/>
+    <author v-if="showAuthor" class="author float-left header-space"/>
 
     <page-label v-if="showLabel" position="top" :text="labelText"/>
 
@@ -29,6 +29,9 @@
       },
     },
     computed: {
+      showAuthor() {
+        return this.params.author || false;
+      },
       showLabel() {
         return _.has(this.params, 'label');
       },

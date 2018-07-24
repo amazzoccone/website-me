@@ -61,6 +61,9 @@
       color() {
         return this.general.color;
       },
+      backgroundColor() {
+        return this.background.color;
+      },
       cssBaseProps() {
         return {
           color: 'var(--color)'
@@ -74,10 +77,19 @@
     },
     mounted() {
       this.setCssVariable('--color', this.color);
+
+      if (this.backgroundColor) {
+          this.setCssVariable('--background-color', this.backgroundColor);
+      }
     },
     watch: {
       color(newVal, oldVal) {
         this.setCssVariable('--color', newVal);
+
+        return newVal;
+      },
+      backgroundColor(newVal, oldVal) {
+        this.setCssVariable('--background-color', newVal);
 
         return newVal;
       }
@@ -113,7 +125,7 @@
     display: none !important;
   }
 
-  @media (--small) {
+  @media (min-width: 40.0rem) {
     .layout-content {
       -webkit-box-flex: 0 !important;
       -ms-flex: 0 0 var(--layout-content-width) !important;

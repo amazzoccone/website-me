@@ -1,6 +1,6 @@
 <template>
   <div class="back">
-    <div class="background"></div>
+    <div class="background" :style="cssProps"></div>
     <div v-for="(image, key) in images" :key="key"
       :class="classObj(key)"
       :style="styleObj(image)"
@@ -66,6 +66,11 @@
     computed: {
       countOfImages() {
         return this.images.length;
+      },
+      cssProps() {
+        return {
+          "background-color": 'var(--background-color)'
+        }
       }
     },
     watch: {
@@ -102,7 +107,6 @@
     bottom: 0;
     right: 0;
     overflow: auto;
-    background-color: var(--background-color);
   }
   .image {
     -webkit-background-size: cover;
