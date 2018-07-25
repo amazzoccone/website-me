@@ -18,7 +18,7 @@
           // this.showAboutModal();
         }
         else if (params.position == 'right') {
-          this.$router.push(this.localePath('works'));
+          this.$router.push(this.localePath('index'));
         }
       });
 

@@ -1,12 +1,23 @@
 <template>
-  <div class="row pointer" @click="clickHandler">
+  <div class="row">
     <border v-if="positionIsRight" :active="this.params.page" :count="params.pages"/>
-
 
     <div class="column">
       <div class="row full-height">
         <div class="content" :style="cssProps">
-          <div v-if="!params.closeBtn" class="title rotate-90">{{ params.text }}</div>
+            <div v-if="params.top"
+              class="top title rotate-90 pointer"
+              :class="[params.top.size || 'md']"
+              @click="clickTopHandler"
+              v-html="params.top.text">
+            </div>
+
+            <div
+              class="center title rotate-90 pointer"
+              :class="[params.size || 'md']"
+              @click="clickCenterHandler"
+              v-html="params.text">
+            </div>
         </div>
       </div>
     </div>
@@ -29,6 +40,10 @@
             return false;
           }
 
+          if (_.has(object, 'size') && ['xs', 'md', 'lg'].indexOf(object.size) == -1) {
+            return false;
+          }
+
           return true;
         }
       },
@@ -47,11 +62,19 @@
         return {
           color: 'var(--color)'
         };
+      },
+      classText() {
+        return [
+          this.params.size || 'md',
+        ];
       }
     },
     methods: {
-      clickHandler(e) {
-          this.$bus.$emit('sidebar:clicked', this.params);
+      clickTopHandler(e) {
+          this.$bus.$emit('sidebar:clicked', _.merge(this.params, { clicked: 'top' }));
+      },
+      clickCenterHandler(e) {
+          this.$bus.$emit('sidebar:clicked', _.merge(this.params, { clicked: 'center' }));
       },
       close() {
         this.$emit('sidebar-close-clicked');
@@ -77,9 +100,25 @@
     white-space:nowrap;
     display:block;
     position: absolute;
-    top: 50%;
-    font-size: 1rem;
     letter-spacing: 1px;
+  }
+
+  .title.top {
+    top: 5%;
+  }
+  .title.center {
+    top: 50%;
+  }
+
+  .title.xs {
+    font-size: 0.5rem;
+  }
+  .title.md {
+    font-size: 1rem;
+  }
+  .title.lg {
+    font-size: 1.8rem;
+    margin-left: -3px;
   }
 
   .rotate-90 {

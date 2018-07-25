@@ -8,11 +8,12 @@ export default {
       background: {
         color: '#eee'
       },
-      sidebarLeft: {
-        text: app.i18n.t('links.about'),
-      },
+      sidebarLeft: {},
       sidebarRight: {
-        text: app.i18n.t('links.works'),
+        top: {
+          text: '&times;',
+          size: 'lg'
+        }
       },
       header: {
         author: false,

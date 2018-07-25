@@ -19,15 +19,21 @@
         return this.data ? this.data.length : 0;
       },
       page() {
-        return this.$store.state.layout.general.page;
+        return this.findIndexWork(this.$route.params.id) + 1;
       },
       data() {
         return this.$store.state.works;
       },
       work() {
-        let id = this.$route.params.id;
-
-        return this.data.find(work => work.id == id) || {};
+        return this.findWork(this.$route.params.id);
+      },
+      prevWork() {
+        let index = this.findIndexWork(this.work.id);
+        return this.data[index-1] || null;
+      },
+      nextWork() {
+        let index = this.findIndexWork(this.work.id);
+        return this.data[index+1] || null;
       },
       styleObj() {
         return {
@@ -59,13 +65,22 @@
       scrollUpHandler(speed) {
         if (this.page < this.pages) {
             this.$store.commit('setLayoutPage', this.page + 1);
+
+            this.$router.push(this.localePath({name: 'works-id', params: {id: this.nextWork.id}}));
         }
       },
       scrollDownHandler(speed) {
         if (this.page > 1) {
             this.$store.commit('setLayoutPage', this.page - 1);
+            this.$router.push(this.localePath({name: 'works-id', params: {id: this.prevWork.id}}));
         }
-      }
+      },
+      findWork(id) {
+        return this.data.find(work => work.id == id) || {};
+      },
+      findIndexWork(id) {
+        return this.data.findIndex(work => work.id == id);
+      },
     },
     components: {
       ScrollDetector
@@ -87,7 +102,12 @@
   @media (min-width: 40.0rem) { }
 
   /* Larger than tablet screen */
-  @media (min-width: 80.0rem) { }
+  @media (min-width: 80.0rem) {
+    img {
+      width: auto;
+      height: 70vh;
+    }
+  }
 
   /* Larger than desktop screen */
   @media (min-width: 120.0rem) { }

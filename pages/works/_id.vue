@@ -14,10 +14,7 @@
     },
     created() {
       this.$bus.$on('sidebar:clicked', (params) => {
-        if (params.position == 'left') {
-          //do nothing
-        }
-        else if (params.position == 'right') {
+        if (params.position == 'right' && params.clicked == 'top') {
           this.$router.push(this.localePath('works'));
         }
       });

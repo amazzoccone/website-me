@@ -12,7 +12,8 @@ export default {
         text: app.i18n.t('links.about'),
       },
       sidebarRight: {
-        text: app.i18n.t('links.works'),
+        text: '&times;',
+        size: 'lg'
       },
       header: {
         author: true,
