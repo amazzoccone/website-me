@@ -1,7 +1,9 @@
 <template>
   <div class="clearfix wrapper">
-    <logo class="float-left header-space"/>
-    <author v-if="showAuthor" class="author float-left header-space"/>
+    <nuxt-link :to="localePath('index')">
+      <logo class="float-left header-space"/>
+      <author v-if="showAuthor" class="author float-left header-space"/>
+    </nuxt-link>
 
     <page-label v-if="showLabel" position="top" :text="labelText"/>
 
