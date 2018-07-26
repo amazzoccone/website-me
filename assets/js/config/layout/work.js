@@ -2,7 +2,7 @@ export default {
   get(app) {
     return {
       general: {
-        color: '#555',
+        color: '#666',
         page: 1
       },
       background: {

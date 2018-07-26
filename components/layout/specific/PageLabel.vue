@@ -51,7 +51,8 @@
     margin: 0px auto;
   }
   .text {
-    font-size: 1rem;
+    font-size: 0.95rem;
+    margin: 2px auto;
   }
 
   .line {
