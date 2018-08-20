@@ -4,23 +4,20 @@ export default {
       title: translate ? translate(`works.${name}.title`) : '-',
       technique: translate ? translate(`works.${name}.technique`) : '-',
       dimension: translate ? translate(`works.${name}.dimension`) : '-',
-      image: `/${name}.jpg`,
+      image: `/works/${name}.jpg`,
       id: name
     }
   },
   get(translate = null) {
     return [
+      this.find('anochecer', translate),
+      this.find('risas', translate),
+      this.find('temple', translate),
+      this.find('tormenta', translate),
+      this.find('relaciones', translate),
       this.find('dilema', translate),
       this.find('asfixia', translate),
-      this.find('miedo', translate),
-      this.find('relaciones', translate),
-      this.find('relaciones', translate),
-      this.find('dilema', translate),
-      this.find('asfixia', translate),
-      this.find('miedo', translate),
-      this.find('relaciones', translate),
-      this.find('miedo', translate),
-      this.find('relaciones', translate)
+      this.find('miedo', translate)
     ]
   },
   count() {
