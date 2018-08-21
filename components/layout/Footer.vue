@@ -27,7 +27,7 @@
     },
     computed: {
       showLabel() {
-        return _.has(this.params, 'label');
+        return _.has(this.params, 'label') && !_.isEmpty(this.params.label);
       },
       labelText() {
         return _.get(this.params, 'label.text');

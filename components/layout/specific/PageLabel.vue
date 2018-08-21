@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="column">
+    <div class="column pointer" @click="pageClicked">
       <div v-if="isTop" class="row">
         <div class="center line"></div>
       </div>
@@ -35,6 +35,12 @@
       },
       isTop() {
         return this.position == 'top';
+      },
+    },
+    methods: {
+      pageClicked(e) {
+        let type = this.isTop ? 'top' : 'bottom';
+        this.$bus.$emit('page-label:'+type);
       },
     }
   }

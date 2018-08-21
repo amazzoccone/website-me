@@ -15,6 +15,7 @@ const createStore = () => {
         Vue.set(state.layout.general, 'page', page);
       },
       setLayoutPages(state, pages) {
+        Vue.set(state.layout.general, 'pages', pages);
         Vue.set(state.layout.sidebarLeft, 'pages', pages);
         Vue.set(state.layout.sidebarRight, 'pages', pages);
       },
@@ -23,6 +24,12 @@ const createStore = () => {
       },
       setLayoutSidebarRight(state, text) {
         Vue.set(state.layout.sidebarRight, 'text', text);
+      },
+      setLayoutHeaderLabel(state, data) {
+        Vue.set(state.layout.header, 'label', data);
+      },
+      setLayoutFooterLabel(state, data) {
+        Vue.set(state.layout.footer, 'label', data);
       },
 
       works (state, data) {

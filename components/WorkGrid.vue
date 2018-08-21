@@ -45,6 +45,9 @@
 
         return this.data.slice(start, end);
       },
+      queryPage() {
+        return parseInt(this.$route.query.page || 1);
+      }
     },
     mounted() {
       this.$store.commit('works', works.get(this.$t));
@@ -60,22 +63,16 @@
         return `/works/${work.id}`;
       },
       loaded() {
-        this.$bus.$emit('work-grid:loaded', {
-          data: this.data,
-          pages: this.pages,
-          page: this.page,
-          perPage: this.perPage,
-          total: this.total,
-        });
+        this.$store.commit('setLayoutPages', this.pages);
       },
       scrollUpHandler(speed) {
         if (this.page < this.pages) {
-            this.$store.commit('setLayoutPage', this.page + 1);
+            this.$router.push(this.localePath({name: 'works', query: {page: this.queryPage+1}}));
         }
       },
       scrollDownHandler(speed) {
         if (this.page > 1) {
-            this.$store.commit('setLayoutPage', this.page - 1);
+            this.$router.push(this.localePath({name: 'works', query: {page: this.queryPage-1}}));
         }
       }
     },
@@ -105,8 +102,9 @@
   /* Larger than tablet screen */
   @media (min-width: 80.0rem) {
     .grid {
+      grid-template-columns: repeat( auto-fit, minmax(220px, 1fr) );
       grid-template-rows: repeat(var(--work-grid-rows), var(--work-grid-card-height));
-      grid-auto-flow: column;
+      /* grid-auto-flow: column; */
       grid-auto-columns: 1fr;
     }
   }

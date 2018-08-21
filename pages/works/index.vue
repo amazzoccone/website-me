@@ -12,7 +12,9 @@
     fetch ({ store, app }) {
       store.commit('layout', layoutConfig.get(app))
     },
-    created() {
+    mounted() {
+      this.updateStoreByQueryPage(this.queryPage);
+
       this.$bus.$on('sidebar:clicked', (params) => {
         if (params.position == 'left') {
           // this.showAboutModal();
@@ -22,14 +24,57 @@
         }
       });
 
-      this.$bus.$on('work-grid:loaded', (params) => {
-        this.$store.commit('setLayoutPage', params.page);
-        this.$store.commit('setLayoutPages', params.pages);
+      this.$bus.$on('page-label:top', () => {
+        this.$router.push(this.localePath({name: 'works', query: {page: this.queryPage-1}}));
       });
+      this.$bus.$on('page-label:bottom', () => {
+        this.$router.push(this.localePath({name: 'works', query: {page: this.queryPage+1}}));
+      });
+    },
+    computed: {
+      queryPage() {
+        return parseInt(this.$route.query.page || 1);
+      },
+      totalPages() {
+        return parseInt(this.$store.state.layout.general.pages || 0);
+      },
+      headerLabel() {
+        return this.$store.state.layout.header.label;
+      },
+      footerLabel() {
+        return this.$store.state.layout.footer.label;
+      }
+    },
+    methods: {
+      updateStoreByQueryPage(page) {
+        this.$store.commit('setLayoutPage', parseInt(page));
 
-      this.$bus.$on('work-grid:page-changed', (page) => {
-        this.$store.commit('setLayoutPage', page);
-      });
+        if (page <= 1) {
+          this.$store.commit('setLayoutHeaderLabel', {});
+          this.$store.commit('setLayoutFooterLabel', {
+            text: 'scroll'
+          });
+        }
+        else if (page >= this.totalPages) {
+          this.$store.commit('setLayoutHeaderLabel', {
+            text: 'previous',
+          });
+          this.$store.commit('setLayoutFooterLabel', {});
+        }
+        else {
+          this.$store.commit('setLayoutHeaderLabel', {
+            text: 'previous',
+          });
+          this.$store.commit('setLayoutFooterLabel', {
+            text: 'next',
+          });
+        }
+      }
+    },
+    watch: {
+      '$route.query' (newVal, oldVal) {
+        this.updateStoreByQueryPage(newVal.page);
+      }
     },
     components: {
       WorkGrid

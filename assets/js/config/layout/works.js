@@ -19,12 +19,11 @@ export default {
         author: true,
         languageSelector: false,
         logo: {},
+        label: {}
       },
       footer: {
         social: false,
-        label: {
-          text: 'scroll'
-        }
+        label: {}
       }
     }
   },

@@ -1,13 +1,14 @@
 <template>
   <div class="clearfix wrapper">
+    <div class="page-wrapper">
+      <page-label v-if="showLabel" position="top" :text="labelText"/>
+    </div>
     <nuxt-link :to="localePath('index')">
-      <logo class="float-left header-space"/>
-      <author v-if="showAuthor" class="author float-left header-space"/>
+      <logo class="float-left"/>
+      <author v-if="showAuthor" class="author float-left"/>
     </nuxt-link>
 
-    <page-label v-if="showLabel" position="top" :text="labelText"/>
-
-    <language-selector v-if="showLocaleSelector" class="float-right header-space locale-selector"/>
+    <language-selector v-if="showLocaleSelector" class="float-right locale-selector"/>
     <div class="float-right menu-icon">
       <menu-icon/>
     </div>
@@ -35,7 +36,7 @@
         return this.params.author || false;
       },
       showLabel() {
-        return _.has(this.params, 'label');
+        return _.has(this.params, 'label') && !_.isEmpty(this.params.label);
       },
       showLocaleSelector() {
         return _.get(this.params, 'languageSelector', false);
@@ -59,7 +60,8 @@
 
   /* Base style */
   .wrapper {
-    padding: 30px 30px;
+    padding: 0px 30px;
+    padding-bottom: 30px;
   }
   .author {
       margin-left: 15px;
@@ -74,7 +76,11 @@
   /* Larger than tablet screen */
   @media (min-width: 80.0rem) {
     .wrapper {
-      padding: 40px 30px;
+      padding: 0px 30px;
+      padding-bottom: 30px;
+    }
+    .page-wrapper {
+      height: 50px;
     }
 
     .locale-selector {
