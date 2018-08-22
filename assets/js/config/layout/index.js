@@ -12,7 +12,8 @@ export default {
       },
       background: {
         images: backgroundImages,
-        color: 'white'
+        color: 'white',
+        duration: 8000
       },
       sidebarLeft: {
         text: app.i18n.t('links.about'),

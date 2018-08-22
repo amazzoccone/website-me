@@ -5,7 +5,7 @@ export default {
   get() {
     return [
       this.find('miedo'),
-      this.find('relaciones'),
+      this.find('risas'),
       this.find('asfixia')
     ]
   }

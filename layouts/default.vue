@@ -1,24 +1,24 @@
 <template>
   <div class="container-fullpage" :style="cssBaseProps">
     <div class="row fullpage">
-      <background-page :color="background.color" :images="background.images" />
+      <background-page :color="background.color" :images="background.images" :duration="background.duration" />
 
       <div class="column layout-sidebar">
-        <sidebar class="animated fadeInLeft slower delay-2s" key="left" :color="general.color" :params="sidebarLeft" />
+        <sidebar class="animated fadeInLeft slower" key="left" :color="general.color" :params="sidebarLeft" />
       </div>
 
       <div class="column layout-content">
-        <header-content :params="header" class="animated fadeInDown slower delay-4s"/>
+        <header-content :params="header" class="animated fadeInDown slower delay-1s"/>
 
         <div class="row animated fadeIn slower">
           <nuxt/>
         </div>
 
-        <footer-content :params="footer" class="animated fadeInUp slower delay-4s"/>
+        <footer-content :params="footer" class="animated fadeInUp slower delay-1s"/>
       </div>
 
       <div class="column layout-sidebar">
-        <sidebar class="animated fadeInRight slower delay-2s" key="right" :color="general.color" :params="sidebarRight" />
+        <sidebar class="animated fadeInRight slower" key="right" :color="general.color" :params="sidebarRight" />
       </div>
     </div>
   </div>

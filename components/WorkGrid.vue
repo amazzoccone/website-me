@@ -1,9 +1,6 @@
 <template>
   <scroll-detector :disable="isMobile" @scroll:up="scrollUpHandler" @scroll:down="scrollDownHandler">
     <div class="grid">
-      <!-- <transition-group class="grid" tag="div"
-        name="custom-classes-transition"
-        enter-active-class="animated fadeInUp slow"> -->
       <work-card v-for="(work, key) in dataForCurrentPage" :key="key"
         :title="work.title"
         :technique="work.technique"
@@ -11,7 +8,6 @@
         :image="work.image_xs"
         :to="link(work)"
       />
-    <!-- </transition-group> -->
     </div>
   </scroll-detector>
 </template>

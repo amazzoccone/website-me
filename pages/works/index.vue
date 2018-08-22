@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <work-grid class="animated fadeInDown slower"/>
+    <work-grid />
   </div>
 </template>
 
@@ -9,6 +9,11 @@
   import layoutConfig from '~/assets/js/config/layout/works.js';
 
   export default {
+    transition: {
+      name: 'works-page-transition',
+      enterActiveClass: 'animated fadeIn',
+      // leaveActiveClass: 'animated fadeOut'
+    },
     fetch ({ store, app }) {
       store.commit('layout', layoutConfig.get(app))
     },
@@ -20,7 +25,7 @@
           // this.showAboutModal();
         }
         else if (params.position == 'right') {
-          this.$router.push(this.localePath('index'));
+          this.$router.push(this.localePath({name: 'index'}));
         }
       });
 

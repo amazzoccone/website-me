@@ -9,10 +9,15 @@
   import layoutConfig from '~/assets/js/config/layout/index.js';
 
   export default {
+    transition: {
+      name: 'home-page-transition',
+      enterActiveClass: 'animated fadeIn',
+      // leaveActiveClass: 'animated fadeOut'
+    },
     fetch ({ store, app }) {
       store.commit('layout', layoutConfig.get(app))
     },
-    created() {
+    mounted() {
       this.$bus.$on('background:change', (page) => {
         this.$store.commit('setLayoutPage', page);
       });
@@ -23,7 +28,7 @@
         }
         else if (params.position == 'right') {
           //TODO: Fix this! Cause an error when iterates route
-          this.$router.push(this.localePath('works'));
+          this.$router.push(this.localePath({name: 'works'}));
         }
       });
     },

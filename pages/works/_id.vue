@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <work-info/>
+    <work-info />
   </div>
 </template>
 
@@ -9,13 +9,18 @@
   import layoutConfig from '~/assets/js/config/layout/work.js';
 
   export default {
+    transition: {
+      name: 'work-info-page-transition',
+      enterActiveClass: 'animated pulse',
+      // leaveActiveClass: 'animated zoomOut'
+    },
     fetch ({ store, app }) {
       store.commit('layout', layoutConfig.get(app))
     },
-    created() {
+    mounted() {
       this.$bus.$on('sidebar:clicked', (params) => {
         if (params.position == 'right' && params.clicked == 'top') {
-          this.$router.push(this.localePath('works'));
+          this.$router.push(this.localePath({name: 'works'}));
         }
       });
 

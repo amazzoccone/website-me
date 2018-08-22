@@ -4,7 +4,7 @@ const content = {
           contact: "Contactame",
           follow: "Seguime"
         },
-        mail: "amazzo@gmail.com",
+        mail: "mazzoandres@gmail.com",
         facebook: "Facebook",
         instagram: "Instagram"
     },

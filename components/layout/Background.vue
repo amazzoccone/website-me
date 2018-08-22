@@ -41,9 +41,11 @@
         };
       },
       classObj(key) {
+        let active = this.activeImage === key;
         return {
           'background image': true,
-          'hidden': this.activeImage !== key
+          'animated fadeIn slower': active,
+          'animated fadeOut slower': !active
         };
       },
       setInterval() {
@@ -75,7 +77,6 @@
     },
     watch: {
       countOfImages(newVal, oldVal) {
-        console.log('c');
         if (newVal == 0) {
           this.clearInterval()
         }
