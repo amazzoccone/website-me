@@ -8,13 +8,13 @@
       </div>
 
       <div class="column layout-content">
-        <header-content :params="header" class="animated fadeInDown slower delay-1s"/>
+        <header-content :params="header" class="animated fadeInDown"/>
 
         <div class="row animated fadeIn slower">
           <nuxt/>
         </div>
 
-        <footer-content :params="footer" class="animated fadeInUp slower delay-1s"/>
+        <footer-content :params="footer" class="animated fadeInUp"/>
       </div>
 
       <div class="column layout-sidebar">
@@ -68,6 +68,9 @@
         return {
           color: 'var(--color)'
         }
+      },
+      isMobile() {
+        return window.outerWidth < 640;
       }
     },
     methods: {

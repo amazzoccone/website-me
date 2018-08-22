@@ -60,8 +60,7 @@
 
   /* Base style */
   .wrapper {
-    padding: 0px 30px;
-    padding-bottom: 30px;
+    padding: 30px 30px;
   }
   .author {
       margin-left: 15px;
