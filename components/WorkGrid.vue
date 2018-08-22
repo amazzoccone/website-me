@@ -1,13 +1,17 @@
 <template>
   <scroll-detector :disable="isMobile" @scroll:up="scrollUpHandler" @scroll:down="scrollDownHandler">
     <div class="grid">
+      <!-- <transition-group class="grid" tag="div"
+        name="custom-classes-transition"
+        enter-active-class="animated fadeInUp slow"> -->
       <work-card v-for="(work, key) in dataForCurrentPage" :key="key"
         :title="work.title"
         :technique="work.technique"
         :dimension="work.dimension"
-        :image="work.image"
+        :image="work.image_xs"
         :to="link(work)"
       />
+    <!-- </transition-group> -->
     </div>
   </scroll-detector>
 </template>
@@ -20,7 +24,7 @@
   export default {
     data() {
       return {
-        isMobile: false
+        isMobile: false,
       }
     },
     computed: {
@@ -67,13 +71,16 @@
       },
       scrollUpHandler(speed) {
         if (this.page < this.pages) {
-            this.$router.push(this.localePath({name: 'works', query: {page: this.queryPage+1}}));
+          this.changePage(this.queryPage+1);
         }
       },
       scrollDownHandler(speed) {
         if (this.page > 1) {
-            this.$router.push(this.localePath({name: 'works', query: {page: this.queryPage-1}}));
+          this.changePage(this.queryPage-1);
         }
+      },
+      changePage(page) {
+        this.$router.push(this.localePath({name: 'works', query: {page: page}}));
       }
     },
     components: {
@@ -104,7 +111,7 @@
     .grid {
       grid-template-columns: repeat( auto-fit, minmax(220px, 1fr) );
       grid-template-rows: repeat(var(--work-grid-rows), var(--work-grid-card-height));
-      /* grid-auto-flow: column; */
+      grid-auto-flow: column;
       grid-auto-columns: 1fr;
     }
   }

@@ -4,7 +4,8 @@ export default {
       title: translate ? translate(`works.${name}.title`) : '-',
       technique: translate ? translate(`works.${name}.technique`) : '-',
       dimension: translate ? translate(`works.${name}.dimension`) : '-',
-      image: `/works/${name}.jpg`,
+      image: `/works/${name}-xl.jpg`,
+      image_xs: `/works/${name}-xs.jpg`,
       id: name
     }
   },

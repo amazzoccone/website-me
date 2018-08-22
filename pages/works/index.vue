@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <work-grid />
+    <work-grid class="animated fadeInDown slower"/>
   </div>
 </template>
 

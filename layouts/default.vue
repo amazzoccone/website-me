@@ -4,21 +4,21 @@
       <background-page :color="background.color" :images="background.images" />
 
       <div class="column layout-sidebar">
-        <sidebar key="left" :color="general.color" :params="sidebarLeft" />
+        <sidebar class="animated fadeInLeft slower delay-2s" key="left" :color="general.color" :params="sidebarLeft" />
       </div>
 
       <div class="column layout-content">
-        <header-content :params="header" />
+        <header-content :params="header" class="animated fadeInDown slower delay-4s"/>
 
-        <div class="row">
+        <div class="row animated fadeIn slower">
           <nuxt/>
         </div>
 
-        <footer-content :params="footer" />
+        <footer-content :params="footer" class="animated fadeInUp slower delay-4s"/>
       </div>
 
       <div class="column layout-sidebar">
-        <sidebar key="right" :color="general.color" :params="sidebarRight" />
+        <sidebar class="animated fadeInRight slower delay-2s" key="right" :color="general.color" :params="sidebarRight" />
       </div>
     </div>
   </div>

@@ -1,6 +1,6 @@
 export default {
   find(name) {
-    return `/works/${name}.jpg`
+    return `/works/${name}-xl.jpg`
   },
   get() {
     return [
