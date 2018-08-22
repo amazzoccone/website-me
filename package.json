@@ -19,6 +19,7 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
+    "@nuxtjs/google-analytics": "^2.0.2",
     "animate.css": "^3.6.2",
     "lodash": "^4.17.10",
     "milligram": "^1.3.0",

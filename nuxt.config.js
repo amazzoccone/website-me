@@ -81,6 +81,9 @@ module.exports = {
         loadLanguagesAsync: true,
         lazy: true,
         langDir: 'lang/'
+      }],
+      ['@nuxtjs/google-analytics', {
+        id: 'UA-124451167-1'
       }]
   ],
 }
