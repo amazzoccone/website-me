@@ -23,10 +23,10 @@
     },
     computed: {
       tolerance() {
-        return this.settings.tolerance || 1;
+        return this.settings.tolerance || 5;
       },
       timeout() {
-        return this.settings.timeout || 40;
+        return this.settings.timeout || 10;
       },
       element() {
         return document.getElementById("scroll-detector");
