@@ -23,5 +23,16 @@ export default {
   },
   count() {
     return this.get().length;
-  }
+  },
+  next(work) {
+    let index = this.findIndexWork(this.work.id);
+    return this.data[index+1] || null;
+  },
+  prev(work) {
+    let index = this.findIndexWork(this.work.id);
+    return this.data[index-1] || null;
+  },
+  findIndexWork(id) {
+    return this.data.findIndex(work => work.id == id);
+  },
 }

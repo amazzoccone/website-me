@@ -17,6 +17,11 @@
     fetch ({ store, app }) {
       store.commit('layout', layoutConfig.get(app))
     },
+    data() {
+      return {
+        params: null
+      }
+    },
     mounted() {
       this.$bus.$on('sidebar:clicked', (params) => {
         if (params.position == 'right' && params.clicked == 'top') {
@@ -25,13 +30,50 @@
       });
 
       this.$bus.$on('work-info:loaded', (params) => {
+        this.params = params;
         this.$store.commit('setLayoutPage', params.page);
         this.$store.commit('setLayoutPages', params.pages);
         this.$store.commit('setLayoutSidebarLeft', params.work.title);
 
         let description = `${params.work.technique} / ${params.work.dimension}`;
         this.$store.commit('setLayoutSidebarRight', description);
+
+        this.updatePageLabels(params.prevWork, params.nextWork);
       });
+
+      this.$bus.$on('page-label:top', () => {
+        this.changePageWork(this.params.prevWork);
+      });
+      this.$bus.$on('page-label:bottom', () => {
+        this.changePageWork(this.params.nextWork);
+      });
+    },
+    methods: {
+      changePageWork(work) {
+        this.$router.push(this.localePath({name: 'works-id', params: {id: work.id}}));
+      },
+      updatePageLabels(prev, next) {
+        if (!prev) {
+          this.$store.commit('setLayoutHeaderLabel', {});
+          this.$store.commit('setLayoutFooterLabel', {
+            text: 'next'
+          });
+        }
+        else if (!next) {
+          this.$store.commit('setLayoutHeaderLabel', {
+            text: 'previous',
+          });
+          this.$store.commit('setLayoutFooterLabel', {});
+        }
+        // else {
+        //   this.$store.commit('setLayoutHeaderLabel', {
+        //     text: 'previous',
+        //   });
+        //   this.$store.commit('setLayoutFooterLabel', {
+        //     text: 'next',
+        //   });
+        // }
+      }
     },
     components: {
       WorkInfo

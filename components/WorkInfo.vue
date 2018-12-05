@@ -28,12 +28,10 @@
         return this.findWork(this.$route.params.id);
       },
       prevWork() {
-        let index = this.findIndexWork(this.work.id);
-        return this.data[index-1] || null;
+        return works.prev(work);
       },
       nextWork() {
-        let index = this.findIndexWork(this.work.id);
-        return this.data[index+1] || null;
+        return works.next(work);
       },
       styleObj() {
         return {
@@ -59,21 +57,16 @@
           data: this.data,
           pages: this.pages,
           page: this.page,
-          work: this.work
+          work: this.work,
+          prevWork: this.prevWork,
+          nextWork: this.nextWork
         });
       },
       scrollUpHandler(speed) {
-        if (this.page < this.pages) {
-            this.$store.commit('setLayoutPage', this.page + 1);
-
-            this.$router.push(this.localePath({name: 'works-id', params: {id: this.nextWork.id}}));
-        }
+        this.toNextPageWork();
       },
       scrollDownHandler(speed) {
-        if (this.page > 1) {
-            this.$store.commit('setLayoutPage', this.page - 1);
-            this.$router.push(this.localePath({name: 'works-id', params: {id: this.prevWork.id}}));
-        }
+        this.toPrevPageWork();
       },
       findWork(id) {
         return this.data.find(work => work.id == id) || {};
@@ -81,6 +74,21 @@
       findIndexWork(id) {
         return this.data.findIndex(work => work.id == id);
       },
+      toPrevPageWork() {
+        if (this.page > 1) {
+            this.$store.commit('setLayoutPage', this.page - 1);
+            this.changePageWork(this.prevWork);
+        }
+      },
+      toNextPageWork() {
+        if (this.page < this.pages) {
+            this.$store.commit('setLayoutPage', this.page + 1);
+            this.changePageWork(this.nextWork);
+        }
+      },
+      changePageWork(work) {
+        this.$router.push(this.localePath({name: 'works-id', params: {id: work.id}}));
+      }
     },
     components: {
       ScrollDetector

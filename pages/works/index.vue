@@ -57,7 +57,7 @@
         if (page <= 1) {
           this.$store.commit('setLayoutHeaderLabel', {});
           this.$store.commit('setLayoutFooterLabel', {
-            text: 'scroll'
+            text: 'next'
           });
         }
         else if (page >= this.totalPages) {
