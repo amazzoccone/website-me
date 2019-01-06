@@ -1,49 +1,100 @@
 <template>
-  <div class="layout-fullpage row">
-    <background-page color="#EEE" :images="config.images" />
+  <div class="container-fullpage" :style="cssBaseProps">
+    <div class="row fullpage">
+      <background-page :color="background.color" :images="background.images" :duration="background.duration" />
 
-    <div class="column layout-sidebar">
-      <sidebar position="left" :text="sidebarLeft.text" :color="config.color"
-        :pages="sidebarLeft.pages" :page="sidebarLeft.page" />
-    </div>
+      <div class="column layout-sidebar">
+        <sidebar class="animated fadeInLeft slower" key="left" :color="general.color" :params="sidebarLeft" />
+      </div>
 
-    <div class="column layout-content">
-      <header-content :params="header" />
+      <div class="column layout-content">
+        <header-content :params="header" class="animated fadeInDown"/>
 
-      <nuxt/>
+        <div class="row animated fadeIn slower">
+          <nuxt/>
+        </div>
 
-      <footer-content width="84%" :params="footer" />
-    </div>
+        <footer-content :params="footer" class="animated fadeInUp"/>
+      </div>
 
-    <div class="column layout-sidebar">
-      <sidebar position="right" :text="sidebarRight.text" :color="config.color"
-        :pages="sidebarRight.pages" :page="sidebarRight.page" />
+      <div class="column layout-sidebar">
+        <sidebar class="animated fadeInRight slower" key="right" :color="general.color" :params="sidebarRight" />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-  import BackgroundPage from '~/components/Background.vue'
-  import FooterContent from '~/components/Footer.vue'
-  import HeaderContent from '~/components/Header.vue'
-  import Sidebar from '~/components/Sidebar.vue'
+  import BackgroundPage from '~/components/layout/Background.vue'
+  import FooterContent from '~/components/layout/Footer.vue'
+  import HeaderContent from '~/components/layout/Header.vue'
+  import Sidebar from '~/components/layout/Sidebar.vue'
 
   export default {
     computed: {
       config () {
-        return this.$store.state.layout;
+        return _.get(this.$store.state, 'layout');
+      },
+      general() {
+        return _.get(this.config, 'general', {});
+      },
+      background() {
+        let params = _.clone(this.general);
+        return _.merge(params, _.get(this.config, 'background', {}));
       },
       footer() {
-        return _.get(this.config, 'footer', {});
+        let params = _.clone(this.general);
+        return _.merge(params, _.get(this.config, 'footer', {}));
       },
       header() {
-        return _.get(this.config, 'header', {});
+        let params = _.clone(this.general);
+        return _.merge(params, _.get(this.config, 'header', {}));
       },
       sidebarLeft() {
-        return _.get(this.config, 'sidebarLeft', {});
+        let params = _.clone(this.general);
+        return _.merge(params, { position: 'left' }, _.get(this.config, 'sidebarLeft', {}));
       },
       sidebarRight() {
-        return _.get(this.config, 'sidebarRight', {});
+        let params = _.clone(this.general);
+        return _.merge(params, { position: 'right' }, _.get(this.config, 'sidebarRight', {}));
+      },
+      color() {
+        return this.general.color;
+      },
+      backgroundColor() {
+        return this.background.color;
+      },
+      cssBaseProps() {
+        return {
+          color: 'var(--color)'
+        }
+      },
+      isMobile() {
+        return window.outerWidth < 640;
+      }
+    },
+    methods: {
+      setCssVariable(name, value) {
+        document.documentElement.style.setProperty(name, value);
+      }
+    },
+    mounted() {
+      this.setCssVariable('--color', this.color);
+
+      if (this.backgroundColor) {
+          this.setCssVariable('--background-color', this.backgroundColor);
+      }
+    },
+    watch: {
+      color(newVal, oldVal) {
+        this.setCssVariable('--color', newVal);
+
+        return newVal;
+      },
+      backgroundColor(newVal, oldVal) {
+        this.setCssVariable('--background-color', newVal);
+
+        return newVal;
       }
     },
     components: {
@@ -56,35 +107,40 @@
 </script>
 
 <style>
-  html {
-    font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    font-size: 16px;
-    word-spacing: 1px;
-    -ms-text-size-adjust: 100%;
-    -webkit-text-size-adjust: 100%;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
-    box-sizing: border-box;
-  }
+  @import '~/assets/css/variables.css';
 
-  body {
-    margin: 0px;
-    color: #FFF;
-  }
+  /* Mobile First Media Queries */
 
-  .layout-fullpage {
+  /* Base style */
+  .container-fullpage {
     height: 100vh;
+    margin: 0 auto;
+    position: relative;
+    width: 100%;
   }
-  .layout-content {
-    -webkit-box-flex: 0 !important;
-    -ms-flex: 0 0 84% !important;
-    flex: 0 0 84% !important;
-    max-width: 84% !important;
+  .row.fullpage {
+    margin-left: 0;
+    width: 100%;
+    padding: 0;
   }
+
   .layout-sidebar {
-    -webkit-box-flex: 0 !important;
-    -ms-flex: 0 0 8% !important;
-    flex: 0 0 8% !important;
-    max-width: 8% !important;
+    display: none !important;
+  }
+
+  @media (min-width: 40.0rem) {
+    .layout-content {
+      -webkit-box-flex: 0 !important;
+      -ms-flex: 0 0 var(--layout-content-width) !important;
+      flex: 0 0 var(--layout-content-width) !important;
+      max-width: var(--layout-content-width) !important;
+    }
+    .layout-sidebar {
+      display: block !important;
+      -webkit-box-flex: 0 !important;
+      -ms-flex: 0 0 var(--layout-sidebar-width) !important;
+      flex: 0 0 var(--layout-sidebar-width) !important;
+      max-width: var(--layout-sidebar-width) !important;
+    }
   }
 </style>

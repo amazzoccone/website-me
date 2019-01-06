@@ -1,0 +1,39 @@
+/* ------ CSS variables ------ */
+
+:root {
+  /* General */
+  --color: white;
+  --background-color: white;
+
+  --font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+
+  /* Layout grid */
+  --layout-content-size: 88;
+  --layout-content-width: calc(var(--layout-content-size) * 1%);
+
+  --layout-sidebar-width: calc((100 - var(--layout-content-size))/2 * 1%);
+
+  --layout-footer-width: var(--layout-content-width);
+  --layout-footer-left: var(--layout-sidebar-width);
+
+
+  /* Sidebar border */
+  --border-default-opacity: 0.5;
+  --border-default-width: 1px;
+
+  --border-active-opacity: 0.9;
+  --border-active-width: 3px;
+
+  /* Page label */
+  --page-label-height: 35px;
+  --page-label-line-width: 1px;
+
+  /* Work Grid */
+  --work-grid-grap: 40px;
+  --work-grid-rows: 2;
+  --work-grid-card-height: 230px;
+  --work-grid-card-height-xs: 260px;
+
+  /* Work Card */
+  --work-card-overlay-background: rgba(255, 255, 255, 0.6);
+}

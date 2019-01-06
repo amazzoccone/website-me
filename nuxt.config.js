@@ -27,11 +27,16 @@ module.exports = {
   css: [
     'milligram/dist/milligram.min.css',
     'animate.css/animate.css',
+    '@/assets/css/main.css',
   ],
   /*
   ** Customize the progress bar color
   */
   loading: { color: '#3B8070' },
+  /*
+  ** Own or external plugins
+  */
+  plugins: [ '~/plugins/eventBus.js' ],
   /*
   ** Build configuration
   */
@@ -76,6 +81,9 @@ module.exports = {
         loadLanguagesAsync: true,
         lazy: true,
         langDir: 'lang/'
+      }],
+      ['@nuxtjs/google-analytics', {
+        id: 'UA-124451167-1'
       }]
   ],
 }

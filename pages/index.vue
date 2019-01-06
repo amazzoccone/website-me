@@ -1,94 +1,59 @@
 <template>
   <div class="content">
-    <div class="row">
-      <div class="works-desktop">
-        <span class="works-ref">
-          <b>{{ '/0' + page }}</b>
-        </span>
-        <span class="works-ref">
-          {{ $t('home.works') }}
-        </span>
-      </div>
-    </div>
-    <div class="row">
-      <h1 class="title">{{ $t('home.title') }}</h1>
-    </div>
-    <div class="row">
-      <div class="works-mobile float-right">
-      </div>
-    </div>
+    <home />
   </div>
 </template>
 
 <script>
+  import Home from '~/components/Home.vue';
+  import layoutConfig from '~/assets/js/config/layout/index.js';
 
-export default {
-  data() {
-    return {
-      page: 1
+  export default {
+    transition: {
+      name: 'home-page-transition',
+      enterActiveClass: 'animated fadeIn',
+      // leaveActiveClass: 'animated fadeOut'
+    },
+    fetch ({ store, app }) {
+      store.commit('layout', layoutConfig.get(app))
+    },
+    mounted() {
+      this.$bus.$on('background:change', (page) => {
+        this.$store.commit('setLayoutPage', page);
+      });
+
+      this.$bus.$on('sidebar:clicked', (params) => {
+        if (params.position == 'left') {
+          // this.showAboutModal();
+        }
+        else if (params.position == 'right') {
+          //TODO: Fix this! Cause an error when iterates route
+          this.$router.push(this.localePath({name: 'works'}));
+        }
+      });
+    },
+    components: {
+      Home
     }
-  },
-  fetch ({ store, app }) {
-    let images = ['/IMG_0546.JPG', 'IMG_0529.JPG', 'IMG_0529.JPG'];
-    let pages = images.length;
-
-    store.commit('layout', {
-      color: '#FFF',
-      images: images,
-      sidebarLeft: {
-        text: app.i18n.t('links.about'),
-        pages: pages,
-        page: 1
-      },
-      sidebarRight: {
-        text: app.i18n.t('links.works'),
-        pages: pages,
-        page: 1
-      },
-      header: {
-        author: true,
-        languageSelector: true,
-        logo: {},
-      },
-      footer: {
-        social: true
-      }
-    })
   }
-}
 </script>
 
-<style scoped>
+<style>
   /* Mobile First Media Queries *//* Mobil
 
   /* Base style */
   .content {
     margin: 0 auto;
-    width: 60%;
+    margin-top: 10vh;
+    width: 70%;
   }
 
-  .works-ref {
-    font-size: 1.2rem;
-    float: right;
-    line-height: 1.2;
-  }
-
-  .title {
-    font-size: 5rem;
-    text-align: center;
-  }
-  .works-desktop {
-    width: 80%;
-    display: none;
-  }
 
   /* Larger than mobile screen */
   @media (min-width: 40.0rem) {
-    .works-desktop {
-      display: block;
-    }
-    .works-mobile {
-      display: none;
+    .content {
+      margin-top: 15vh;
+      width: 60%;
     }
   }
 

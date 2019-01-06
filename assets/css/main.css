@@ -1,0 +1,47 @@
+@import '~/assets/css/variables.css';
+
+
+/* ------ General ------ */
+html {
+  font-size: 16px;
+  word-spacing: 1px;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+body {
+  margin: 0px;
+}
+
+.full-height {
+  height: 100vh;
+}
+.pointer {
+  cursor: pointer;
+}
+
+
+/* Grid complementors */
+.row .column.column-10 {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 10%;
+  flex: 0 0 10%;
+  max-width: 10%;
+}
+.row .column.column-45 {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 45%;
+  flex: 0 0 45%;
+  max-width: 45%;
+}
+
+.row .column.column-offset-45 {
+  margin-left: 45%;
+}
+
+/*
+  IMPORTANT: VueJS limitation to make css variables reactive
+  More info.: https://github.com/vuejs/vue/issues/7346
+*/

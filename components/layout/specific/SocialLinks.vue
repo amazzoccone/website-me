@@ -1,5 +1,4 @@
 <template>
-  <div class="container wrapper">
     <div class="row">
       <template v-if="!active">
         <div class="column">
@@ -19,7 +18,7 @@
       </template>
 
       <template v-if="contactIsActive || followIsActive">
-        <div class="column column-80">
+        <div class="column">
           <div class="row">
             <template v-if="contactIsActive">
               <div class="column">
@@ -46,14 +45,13 @@
             </template>
           </div>
         </div>
-        <div class="column column-20">
+        <div class="column column-close">
           <div class="row">
             <button class="button close" @click="close">&times;</button>
           </div>
         </div>
       </template>
     </div>
-  </div>
 </template>
 
 <script>
@@ -90,7 +88,14 @@ export default {
 
 <style scoped>
   .wrapper {
-      width: 43%;
+      -webkit-box-flex: 0 !important;
+      -ms-flex: 0 0 43% !important;
+      flex: 0 0 43% !important;
+      max-width: 43% !important;
+  }
+
+  .column-close {
+    width: 55px;
   }
 
   .button {
@@ -122,8 +127,8 @@ export default {
 
   .button.close {
     font-size: 2.2rem;
-    padding: 0 1.5rem;
     color: #777;
+    padding: 0px;
     padding-bottom: 5px;
     line-height: 1;
   }
