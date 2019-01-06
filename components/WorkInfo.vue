@@ -19,7 +19,7 @@
         return this.data ? this.data.length : 0;
       },
       page() {
-        return this.findIndexWork(this.$route.params.id) + 1;
+        return this.findIndexWork(this.work.id) + 1;
       },
       data() {
         return this.$store.state.works;
@@ -28,10 +28,12 @@
         return this.findWork(this.$route.params.id);
       },
       prevWork() {
-        return works.prev(work);
+        const workIndex = this.findIndexWork(this.work.id);
+        return workIndex > 1 ? this.data[workIndex-1] : null;
       },
       nextWork() {
-        return works.next(work);
+        const workIndex = this.findIndexWork(this.work.id);
+        return workIndex < this.pages ? this.data[workIndex+1] : null;
       },
       styleObj() {
         return {

@@ -13,7 +13,9 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { name: 'keywords', content: 'andresmazzo, artwork, personal' },
       { hid: 'description', name: 'description', content: 'Personal website' },
+      { name: 'google-site-verification', content: 'Sgy4p5dkXTkJlkNh0-rbieFadkUyaPgc4HYTXQVqAqQ'},
       { name: 'msapplication-TileColor', content: '#ffffff' },
       { name: 'theme-color', content: '#ffffff' }
     ],
@@ -84,6 +86,13 @@ module.exports = {
       }],
       ['@nuxtjs/google-analytics', {
         id: 'UA-124451167-1'
-      }]
+      }],
+      '@nuxtjs/sitemap'
   ],
+  sitemap: {
+    path: '/sitemap.xml',
+    hostname: 'https://andresmazzo.com',
+    gzip: true,
+    generate: false // Enable me when using nuxt generate
+  }
 }
